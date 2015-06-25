@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Blog.WebUI.Admin.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="wrapper">
+            <div class="header">
+                <div class="adminTitle">
+                    <h2>Blog. Admin Console</h2>
+                </div>
+                <div class="infoTitle">
+                    <asp:Label ID="lblInfoTitle" SkinID="lblInfoTitle" CssClass="lblInfoTitle" runat="server"></asp:Label>
+                </div>
+            </div>
+            <div class="main">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+                </div>
+            <div class="footer">
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Entities", "Blog.Entities\Blog.Entities.csproj", "{F14BB60A-45F7-4E6A-99A5-15E288CCA8A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Repository", "Blog.Repository\Blog.Repository.csproj", "{A653CFC6-BFD9-47ED-902B-BD49BC9EBE7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.WebUI.Admin", "Blog.WebUI.Admin\Blog.WebUI.Admin.csproj", "{64F658E2-2400-4D69-805A-0BE983DEC159}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F14BB60A-45F7-4E6A-99A5-15E288CCA8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F14BB60A-45F7-4E6A-99A5-15E288CCA8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F14BB60A-45F7-4E6A-99A5-15E288CCA8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F14BB60A-45F7-4E6A-99A5-15E288CCA8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A653CFC6-BFD9-47ED-902B-BD49BC9EBE7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A653CFC6-BFD9-47ED-902B-BD49BC9EBE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A653CFC6-BFD9-47ED-902B-BD49BC9EBE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A653CFC6-BFD9-47ED-902B-BD49BC9EBE7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64F658E2-2400-4D69-805A-0BE983DEC159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F658E2-2400-4D69-805A-0BE983DEC159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F658E2-2400-4D69-805A-0BE983DEC159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F658E2-2400-4D69-805A-0BE983DEC159}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

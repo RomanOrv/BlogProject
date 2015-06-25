@@ -1,0 +1,84 @@
+﻿body {
+}
+
+
+form {
+    width: 800px;
+    height: 500px;
+    background-color: lightgray;
+    border: 2px solid black;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.header {
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid black;
+    background-color: burlywood;
+}
+
+.adminTitle {
+    width: inherit;
+    height: 50px;
+    /*background-color: coral;*/
+    border-bottom: 1px solid black;
+    align-content: center;
+    text-align: center;
+}
+
+    .adminTitle h2 {
+        width:100%;
+        text-align: center;
+        margin:0;
+        padding:7px 0;
+        position:relative;
+        bottom:0;
+    }
+
+.infoTitle {
+    width: 100%;
+    height: 49px;
+    background-color: lightcyan;
+        align-content: center;
+    text-align: center;
+}
+
+.lblInfoTitle {
+    position:relative;
+    top:15px;
+}
+
+
+.main {
+    width:95%;
+    height:337px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:cornsilk;
+    overflow-y:auto;
+}
+
+.footer {
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid black;
+    background-color: azure;
+    position:relative;
+    bottom:0;
+}
+
+.tablePersonal {
+    width:100%;
+}
+
+.login {
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:80px;
+}
