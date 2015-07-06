@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ObjectDataSource ID="odsUser" runat="server"
         OnObjectCreating="odsUser_ObjectCreating"
-        TypeName="Blog.Repository.UserRepository"
+        TypeName="Blog.Repository.EFUserRepository"
         SelectMethod="GetAllUsers"
         UpdateMethod="UpdateUser"
         OnUpdating="odsUser_Updating">

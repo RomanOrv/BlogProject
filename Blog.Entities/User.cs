@@ -14,6 +14,11 @@ namespace Blog.Entities
     
     public partial class User
     {
+        public User()
+        {
+            this.Article = new HashSet<Article>();
+        }
+    
         public int Id { get; set; }
         public string Firstname { get; set; }
         public string Surname { get; set; }
@@ -25,5 +30,7 @@ namespace Blog.Entities
         public string Password { get; set; }
         public bool isAdmin { get; set; }
         public bool isEnable { get; set; }
+    
+        public virtual ICollection<Article> Article { get; set; }
     }
 }

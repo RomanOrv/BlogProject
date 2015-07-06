@@ -141,6 +141,16 @@
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blog.Entities\Blog.Entities.csproj">
+      <Project>{f14bb60a-45f7-4e6a-99a5-15e288cca8a6}</Project>
+      <Name>Blog.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blog.Repository\Blog.Repository.csproj">
+      <Project>{a653cfc6-bfd9-47ed-902b-bd49bc9ebe7c}</Project>
+      <Name>Blog.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

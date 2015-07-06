@@ -1,6 +1,21 @@
-﻿@{
+﻿@using Blog.Entities
+
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Stared/_Layout.cshtml";
 }
 
+@{
+    List<Article> articles = ViewBag.Articles;
+}
+
 <h2>Index</h2>
+<div>
+    <ul>
+        @foreach (var article in articles)
+        {
+            <li>@article.Title</li>
+        }
+    </ul>
+</div>
+

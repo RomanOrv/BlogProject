@@ -30,7 +30,7 @@ namespace Blog.WebUI.Admin
 
         protected void odsUser_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
         {
-            e.ObjectInstance = new UserRepository(_connectionString);
+            e.ObjectInstance = new EFUserRepository(_connectionString);
         }
 
 

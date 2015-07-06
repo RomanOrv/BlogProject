@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Blog.Repository
 {
-    public class UserRepository : IUserRepository
+    public class EFUserRepository : IUserRepository
     {
         private readonly string _connectionString;
 
-        public UserRepository(string connectionString)
+        public EFUserRepository(string connectionString)
         {
             this._connectionString = connectionString;
         }
