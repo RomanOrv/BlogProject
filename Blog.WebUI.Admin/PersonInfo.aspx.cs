@@ -41,7 +41,7 @@ namespace Blog.WebUI.Admin
 
         private void FillTable(User user)
         {
-            CreateTableRow("UserId", user.Id.ToString());
+            CreateTableRow("UserId", user.Id);
 
             string strFullName = String.Format("{0} {1}", user.Surname, user.Firstname);
             CreateTableRow("Fullname", strFullName);
@@ -50,20 +50,24 @@ namespace Blog.WebUI.Admin
 
             CreateTableRow("Email", user.Email);
 
-            CreateTableRow("Date Registration", user.DateRegister.ToString());
+            CreateTableRow("Date Registration", user.DateRegister);
 
-            CreateTableRow("isEnable", user.isEnable.ToString());
+            CreateTableRow("isEnable", user.isEnable);
 
-            CreateTableRow("Date Disable", user.DateDisable.ToString());
+            CreateTableRow("Date Disable", user.DateDisable);
 
             CreateTableRow("Password", user.Password);
 
-            CreateTableRow("isAdmin", user.isAdmin.ToString());
+            CreateTableRow("isAdmin", user.isAdmin);
         }
 
 
-        private void CreateTableRow(string title, string content)
+        private void CreateTableRow(string title, object content)
         {
+            if (title == "Image")
+            {
+                content = UploadImage(content.ToString());
+            }
             TableRow row = new TableRow();
             row.Cells.Add(CreateTableCell(title));
             row.Cells.Add(CreateTableCell(content));
@@ -71,11 +75,38 @@ namespace Blog.WebUI.Admin
         }
 
 
-        private TableCell CreateTableCell(string content)
+        private TableCell CreateTableCell(object content)
         {
             TableCell cell = new TableCell();
-            cell.Text = content;
+            if (content != null)
+            {
+                if (content.GetType() != typeof(Image))
+                {
+                    cell.Text = content.ToString();
+                }
+                else
+                {
+                    cell.Controls.Add(content as Image);
+                }
+            }
             return cell;
+        }
+
+        private TableCell CreateTableCellWithImage(Image image)
+        {
+            TableCell cell = new TableCell();
+            cell.Controls.Add(image);
+            return cell;
+        }
+
+
+        private Image UploadImage(string path)
+        {
+            Image image = new Image();
+            image.ImageUrl = "";
+            image.Width = 100;
+            image.Height = 100;
+            return image;
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

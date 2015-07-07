@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace Blog.WebUI.Frontend.Controllers
 {
     public class HomeController : Controller
@@ -13,6 +14,7 @@ namespace Blog.WebUI.Frontend.Controllers
         private readonly IArticleRepository _articleRepository;
         public HomeController()
         {
+            RTE.Editor editor = new RTE.Editor();
             string connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
             this._articleRepository = new EFArticleRepository(connectionString);
         }
