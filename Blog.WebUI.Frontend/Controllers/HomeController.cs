@@ -25,6 +25,5 @@ namespace Blog.WebUI.Frontend.Controllers
             ViewBag.Articles = articles;
             return View();
         }
-
-    }
+	}
 }

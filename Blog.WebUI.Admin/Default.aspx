@@ -39,7 +39,12 @@
             <asp:BoundField DataField="Firstname" HeaderText="Firstname" ReadOnly="true" />
               <asp:BoundField DataField="Username" HeaderText="Username" ReadOnly="true" />
             <asp:BoundField DataField="DateRegister" HeaderText="Registration" ReadOnly="true" />
-            <asp:BoundField DataField="isAdmin" HeaderText="is Admin" ReadOnly="true" />
+             <asp:TemplateField HeaderText="isAdmin">
+                <ItemTemplate>
+                    <asp:CheckBox ID="chbxAdmin" runat="server" Enabled="false" Checked='<%# Eval("IsAdmin") %>'
+                        Text='<%# Convert.ToBoolean(Eval("IsAdmin")) == true ? "Admin" : "" %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:Button ID="btnInfo" runat="server" Text="View Personal Info" OnClick="btnInfo_Click"/>
