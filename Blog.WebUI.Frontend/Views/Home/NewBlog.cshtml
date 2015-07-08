@@ -1,0 +1,20 @@
+﻿@model Blog.WebUI.Frontend.Models.NewBlogModel
+@{
+    ViewBag.Title = "NewBlog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NewBlog</h2>
+<form method="post" style="width: 250px;">
+    <table>
+        <tr>
+            <td>Title 
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Title)
+            </td>
+        </tr>
+    </table>
+    <br />
+    <input type="submit" />
+</form>

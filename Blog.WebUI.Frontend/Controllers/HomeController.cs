@@ -1,4 +1,5 @@
 ﻿using Blog.Repository;
+using Blog.WebUI.Frontend.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,6 +26,20 @@ namespace Blog.WebUI.Frontend.Controllers
         {
             var articles = this._articleRepository.GetPublished();
             ViewBag.Articles = articles;
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult NewBlog()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewBlog(NewBlogModel blog)
+        {
+
             return View();
         }
 	}

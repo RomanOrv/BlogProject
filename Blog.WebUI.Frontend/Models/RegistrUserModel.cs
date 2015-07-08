@@ -11,7 +11,7 @@ namespace Blog.WebUI.Frontend.Models
     {
         [DataType(DataType.Text)]
         [StringLength(30, MinimumLength = 6)]
-        [Required(ErrorMessage="invalid name")]
+        [Required()]
         public string Firstname { get; set; }
 
         [DataType(DataType.Text)]
