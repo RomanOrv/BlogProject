@@ -43,7 +43,6 @@ namespace Blog.WebUI.Frontend.Models
         [Compare("Password")]
         [DataType(DataType.Password)]
         [StringLength(255, MinimumLength = 8)]
-        [Required()]
         public string ConfirmPassword { get; set; }
     }
 }
