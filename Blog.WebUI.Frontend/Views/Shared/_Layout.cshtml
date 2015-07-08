@@ -2,12 +2,22 @@
 
 <html>
 <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/themes/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
-<body>
-    <div>
+<body class="">
+    <div class="">
         @RenderBody()
+
+        <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        @RenderSection("Scripts", required: false)
     </div>
 </body>
 </html>

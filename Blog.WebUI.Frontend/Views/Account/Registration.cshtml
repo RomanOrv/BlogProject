@@ -1,0 +1,72 @@
+﻿@model Blog.WebUI.Frontend.Models.RegistrUserModel
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Registration</h2>
+
+<form method="post" style="width: 250px;">
+
+@*    @Html.ValidationSummary()*@
+    <table>
+        <tr>
+            <td>Firstname 
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Firstname)
+                @Html.ValidationMessageFor(m => m.Firstname)
+            </td>
+        </tr>
+        <tr>
+            <td>Surname 
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Surname)
+                  @Html.ValidationMessageFor(m => m.Surname)
+            </td>
+        </tr>
+        <tr>
+            <td>Email 
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Email)
+                  @Html.ValidationMessageFor(m => m.Email)
+            </td>
+        </tr>
+        <tr>
+            <td>Description 
+            </td>
+            <td>
+                @Html.TextAreaFor(m => m.Description)
+            </td>
+        </tr>
+        <tr>
+            <td>Username 
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Username)
+                  @Html.ValidationMessageFor(m => m.Username)
+            </td>
+        </tr>
+        <tr>
+            <td>Password 
+            </td>
+            <td>
+                @Html.PasswordFor(m => m.Password)
+                  @Html.ValidationMessageFor(m => m.Password)
+            </td>
+        </tr>
+        <tr>
+            <td>Confirm Password 
+            </td>
+            <td>
+                @Html.PasswordFor(m => m.ConfirmPassword)
+                 @Html.ValidationMessageFor(m => m.ConfirmPassword)
+            </td>
+        </tr>
+    </table>
+    <br />
+    <input type="submit" />
+</form>
