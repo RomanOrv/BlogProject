@@ -25,7 +25,7 @@ namespace Blog.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<User> User { get; set; }
         public DbSet<Article> Article { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }

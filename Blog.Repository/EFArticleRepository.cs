@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Repository
 {
-   public class EFArticleRepository: IArticleRepository
+    public class EFArticleRepository : IArticleRepository
     {
         private readonly string _connectionString;
         public EFArticleRepository(string connectionString)
@@ -23,6 +23,48 @@ namespace Blog.Repository
                 return context.CreateObjectSet<Article>()
                     .Where(u => u.Published == true)
                     .ToList();
+            }
+        }
+
+
+        public bool CheckUniqueTitle(string title)
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                bool isExists = context.CreateObjectSet<Article>().Any(u => u.Title == title);
+                return isExists ? false : true;
+            };
+        }
+
+
+        public void AddNewArticle(string title)
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                var articles = context.CreateObjectSet<Article>();
+                int maxId = articles.Any() ? articles.Max(x => x.Id) : 1;
+
+                Article newArticle = new Article()
+                {
+                    Id = +maxId,
+                    Title = title,
+                    AuthorId = 1, //??????
+                    Content = string.Empty,
+                    CreationTime = DateTime.Now,
+                    Published = true
+                };
+
+                articles.AddObject(newArticle);
+                context.SaveChanges();
+            };
+        }
+
+
+        public Article GetArticleForId(int id)
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                return context.CreateObjectSet<Article>().FirstOrDefault(x => x.Id == id);
             }
         }
     }

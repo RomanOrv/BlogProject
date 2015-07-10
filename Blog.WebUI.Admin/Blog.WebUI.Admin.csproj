@@ -38,7 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -59,6 +64,7 @@
   <ItemGroup>
     <Content Include="App_Themes\DefaultTheme\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Images\User-Default.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="PersonInfo.aspx" />
     <Content Include="Web.config" />
@@ -98,6 +104,7 @@
   <ItemGroup>
     <Content Include="Site.Master" />
     <Content Include="App_Themes\DefaultTheme\Site.skin" />
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -107,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog.Entities\Blog.Entities.csproj">
-      <Project>{f14bb60a-45f7-4e6a-99a5-15e288cca8a6}</Project>
+      <Project>{d9ea7881-65cb-4179-9363-733063af0443}</Project>
       <Name>Blog.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Blog.Repository\Blog.Repository.csproj">
@@ -115,6 +122,7 @@
       <Name>Blog.Repository</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

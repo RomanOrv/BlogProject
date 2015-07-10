@@ -16,12 +16,12 @@ namespace Blog.WebUI.Frontend.Models
         //public string Password { set; get; }
 
         [Required()]
-        public string Login { set; get; }
+        public string Login { get; set; }
 
         [Required()]
         [DataType(DataType.Password)]
-        public string Password { set; get; }
+        public string Password { get; set; }
 
-        public bool RememberMe { set; get; }
+        public bool RememberMe { get; set; }
     }
 }

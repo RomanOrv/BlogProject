@@ -30,6 +30,7 @@ namespace Blog.Entities
         public string Password { get; set; }
         public bool isAdmin { get; set; }
         public bool isEnable { get; set; }
+        public string imgFile { get; set; }
     
         public virtual ICollection<Article> Article { get; set; }
     }

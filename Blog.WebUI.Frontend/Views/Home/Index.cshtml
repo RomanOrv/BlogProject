@@ -31,6 +31,7 @@
                     <td>@article.Id</td>
                     <td>@article.Title</td>
                     <td>@article.AuthorId</td>
+                    <td><a href="@Url.Action("ShowBlog", new { id = article.Id })" class="btn btn-info">Show Blog</a></td>
                 </tr>
             }
 

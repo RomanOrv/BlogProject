@@ -10,5 +10,8 @@ namespace Blog.Repository
    public interface IArticleRepository
     {
         List<Article> GetPublished();
+        bool CheckUniqueTitle(string title);
+        void AddNewArticle(string title);
+        Article GetArticleForId(int id);
     }
 }

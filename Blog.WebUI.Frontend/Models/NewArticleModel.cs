@@ -6,10 +6,11 @@ using System.Web;
 
 namespace Blog.WebUI.Frontend.Models
 {
-    public class NewBlogModel
+    public class NewArticleModel
     {
         [DataType(DataType.Text)]
-        [StringLength(30, MinimumLength = 6)]
+        //[StringLength(30, MinimumLength = 6)]
+        [System.Web.Mvc.Remote("ValidateBlogTitle", "Validation", ErrorMessage = "Blog name already in use")]
         [Required()]
         public string Title { get; set; }
     }

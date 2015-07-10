@@ -2,7 +2,9 @@
 using Blog.WebUI.Admin.Code.Keys;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -59,6 +61,8 @@ namespace Blog.WebUI.Admin
             CreateTableRow("Password", user.Password);
 
             CreateTableRow("isAdmin", user.isAdmin);
+
+            CreateTableRow("Image", user.imgFile);
         }
 
 
@@ -100,12 +104,16 @@ namespace Blog.WebUI.Admin
         }
 
 
-        private Image UploadImage(string path)
+        private Image UploadImage(string file)
         {
             Image image = new Image();
-            image.ImageUrl = "";
+            string filename = Path.GetFileName(file);
+            //string path = Path.Combine(Environment.CurrentDirectory, "123.bmp");
+            string path = @"//localhost/Images/" + file;
+            image.ImageUrl = path;
             image.Width = 100;
             image.Height = 100;
+            image.AlternateText = "Profile image";
             return image;
         }
 

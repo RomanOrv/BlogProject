@@ -29,7 +29,7 @@ namespace Blog.Repository
         {
             using (ObjectContext context = new ObjectContext(_connectionString))
             {
-                return context.CreateObjectSet<User>().Single(x=>x.Id == id);
+                return context.CreateObjectSet<User>().Single(x => x.Id == id);
             }
         }
 
@@ -45,6 +45,40 @@ namespace Blog.Repository
                 user.isEnable = isEnable;
                 context.SaveChanges();
             }
+        }
+
+        public bool CheckUnicueUsername(string username)
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                bool isExists = context.CreateObjectSet<User>().Any(x => x.Username == username);
+                return isExists ? false : true;
+            }
+        }
+
+        public void AddNewUser(string firstname, string surname, string email, string description, string username, string password, string imagename )
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                var users = context.CreateObjectSet<User>();
+                int maxId = users.Any() ? users.Max(x => x.Id) : 1;
+
+                User newUser = new User()
+                {
+                    Id = +maxId,
+                    Firstname = firstname,
+                    Surname = surname,
+                    Email = email,
+                    DateRegister = DateTime.Now,
+                    Description = description,
+                    Username = username,
+                    Password = password,
+                    imgFile= imagename
+                };
+
+                users.AddObject(newUser);
+                context.SaveChanges();
+            };
         }
     }
 }

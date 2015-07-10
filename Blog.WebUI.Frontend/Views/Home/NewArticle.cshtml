@@ -1,20 +1,21 @@
-﻿@model Blog.WebUI.Frontend.Models.NewBlogModel
+﻿@model Blog.WebUI.Frontend.Models.NewArticleModel
 @{
     ViewBag.Title = "NewBlog";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>NewBlog</h2>
-<form method="post" style="width: 250px;">
+<h2>New Article</h2>
+<form method="post" style="width: 450px;">
     <table>
         <tr>
             <td>Title 
             </td>
             <td>
                 @Html.TextBoxFor(m => m.Title)
+                @Html.ValidationMessageFor(m => m.Title)
             </td>
         </tr>
     </table>
     <br />
-    <input type="submit" />
+    <input type="submit" value="Create article" />
 </form>

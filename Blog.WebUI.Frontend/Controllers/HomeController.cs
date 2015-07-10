@@ -19,8 +19,8 @@ namespace Blog.WebUI.Frontend.Controllers
             string connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
             this._articleRepository = new EFArticleRepository(connectionString);
         }
-        //
-        // GET: /Home/
+
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -31,16 +31,33 @@ namespace Blog.WebUI.Frontend.Controllers
 
 
         [HttpGet]
-        public ActionResult NewBlog()
+        public ActionResult NewArticle()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult NewBlog(NewBlogModel blog)
+        public ActionResult NewArticle(NewArticleModel blog)
         {
+            if (ModelState.IsValid)
+            {
+                _articleRepository.AddNewArticle(blog.Title);
 
+                return RedirectToAction("Index");
+            }
             return View();
         }
-	}
+
+
+        [HttpGet]
+        public ActionResult ShowArticle()
+        {
+            return View();
+        }
+
+
+
+
+
+    }
 }
