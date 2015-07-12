@@ -5,27 +5,28 @@
 }
 
 <h2>Login</h2>
-<form method="post" style="width: 250px;">
-
-    @Html.ValidationSummary()
-    <table>
-        <tr>
-            <td>Login 
-            </td>
-            <td>
-                @Html.TextBoxFor(m => m.Login)
-            </td>
-        </tr>
-        <tr>
-            <td>Password 
-            </td>
-            <td>
-                @Html.PasswordFor(m => m.Password)
-            </td>
-        </tr>
-    </table>
-    @Html.CheckBoxFor(m => m.RememberMe)
-    Remember Me
+<form method="post">
+    <div class="container">
+        @Html.ValidationSummary()
+        <table>
+            <tr>
+                <td>Login 
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Login)
+                </td>
+            </tr>
+            <tr>
+                <td>Password 
+                </td>
+                <td>
+                    @Html.PasswordFor(m => m.Password)
+                </td>
+            </tr>
+        </table>
+        @Html.CheckBoxFor(m => m.RememberMe)
+        Remember Me
     <br />
-    <input type="submit" />
+        <input type="submit" />
+    </div>
 </form>

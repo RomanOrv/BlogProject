@@ -1264,6 +1264,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="StyleImages\blogImage.jpg" />
+    <Content Include="StyleImages\User-Default.jpg" />
+    <Content Include="Styles\Site.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1291,7 +1295,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Registration.cshtml" />
     <Content Include="Views\Home\NewArticle.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\ShowArticle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1302,11 +1305,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Validation\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog.Entities\Blog.Entities.csproj">
-      <Project>{d9ea7881-65cb-4179-9363-733063af0443}</Project>
+      <Project>{c69b6cbb-5dd3-48d3-936e-6df42b71a847}</Project>
       <Name>Blog.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Blog.Repository\Blog.Repository.csproj">

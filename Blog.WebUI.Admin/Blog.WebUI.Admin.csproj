@@ -64,7 +64,6 @@
   <ItemGroup>
     <Content Include="App_Themes\DefaultTheme\style.css" />
     <Content Include="Default.aspx" />
-    <Content Include="Images\User-Default.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="PersonInfo.aspx" />
     <Content Include="Web.config" />
@@ -77,6 +76,9 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\UserAvatar.ashx.cs">
+      <DependentUpon>UserAvatar.ashx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -105,6 +107,7 @@
     <Content Include="Site.Master" />
     <Content Include="App_Themes\DefaultTheme\Site.skin" />
     <Content Include="packages.config" />
+    <Content Include="Handlers\UserAvatar.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -114,7 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog.Entities\Blog.Entities.csproj">
-      <Project>{d9ea7881-65cb-4179-9363-733063af0443}</Project>
+      <Project>{c69b6cbb-5dd3-48d3-936e-6df42b71a847}</Project>
       <Name>Blog.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Blog.Repository\Blog.Repository.csproj">

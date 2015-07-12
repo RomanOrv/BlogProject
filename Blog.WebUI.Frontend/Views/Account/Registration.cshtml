@@ -5,74 +5,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Registration</h2>
+@*<h2>Registration</h2>*@
 
-<form method="post" enctype="multipart/form-data" style="width: 250px;">
-
-    <table>
-        <tr>
-            <td>Firstname 
-            </td>
-            <td>
-                @Html.TextBoxFor(m => m.Firstname)
-                @Html.ValidationMessageFor(m => m.Firstname)
-            </td>
-        </tr>
-        <tr>
-            <td>Surname 
-            </td>
-            <td>
-                @Html.TextBoxFor(m => m.Surname)
-                @Html.ValidationMessageFor(m => m.Surname)
-            </td>
-        </tr>
-        <tr>
-            <td>Email 
-            </td>
-            <td>
-                @Html.TextBoxFor(m => m.Email)
-                @Html.ValidationMessageFor(m => m.Email)
-            </td>
-        </tr>
-        <tr>
-            <td>Description 
-            </td>
-            <td>
-                @Html.TextAreaFor(m => m.Description)
-            </td>
-        </tr>
-        <tr>
-            <td>Username 
-            </td>
-            <td>
-                @Html.TextBoxFor(m => m.Username)
-                @Html.ValidationMessageFor(m => m.Username)
-            </td>
-        </tr>
-        <tr>
-            <td>Password 
-            </td>
-            <td>
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </td>
-        </tr>
-        <tr>
-            <td>Confirm Password 
-            </td>
-            <td>
-                @Html.PasswordFor(m => m.ConfirmPassword)
-                @Html.ValidationMessageFor(m => m.ConfirmPassword)
-            </td>
-        </tr>
-        <tr>
-            <td>File 
-            </td>
-            <td>
-                <input type="file" name="File" id="File"  accept="image/*"/>
-            </td>
-        </tr>
-    </table>
-    <br />
-    <input type="submit" />
+<form method="post" enctype="multipart/form-data">
+    <div class="container">
+        <table>
+            <tr>
+                <td>Firstname 
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Firstname)
+                    @Html.ValidationMessageFor(m => m.Firstname)
+                </td>
+            </tr>
+            <tr>
+                <td>Surname 
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Surname)
+                    @Html.ValidationMessageFor(m => m.Surname)
+                </td>
+            </tr>
+            <tr>
+                <td>Email 
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Email)
+                    @Html.ValidationMessageFor(m => m.Email)
+                </td>
+            </tr>
+            <tr>
+                <td>Description 
+                </td>
+                <td>
+                    @Html.TextAreaFor(m => m.Description)
+                </td>
+            </tr>
+            <tr>
+                <td>Username 
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.Username)
+                    @Html.ValidationMessageFor(m => m.Username)
+                </td>
+            </tr>
+            <tr>
+                <td>Password 
+                </td>
+                <td>
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </td>
+            </tr>
+            <tr>
+                <td>Confirm Password 
+                </td>
+                <td>
+                    @Html.PasswordFor(m => m.ConfirmPassword)
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </td>
+            </tr>
+            <tr>
+                <td>File 
+                </td>
+                <td>
+                    <input type="file" name="File" id="File" accept="image/*" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" />
+    </div>
 </form>

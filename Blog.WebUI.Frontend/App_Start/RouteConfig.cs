@@ -18,18 +18,6 @@ namespace Blog.WebUI.Frontend
                 defaults: new { controller = "Home", action = "Index" }
             );
 
-            routes.MapRoute(
-                name: "Login",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Account", action = "Login" }
-            );
-
-
-            routes.MapRoute(
-                name: "Registration",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Account", action = "Registration" }
-            );
 
             routes.MapRoute(
                 name: "Default",

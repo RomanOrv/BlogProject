@@ -53,7 +53,7 @@ namespace Blog.WebUI.Frontend.Controllers
         {
             if (ModelState.IsValid)
             {
-                string filename = UplaodImage(user.File);
+                byte[] imagebyte = UploadImage(user.File);
 
                 this._userRepository.AddNewUser(user.Firstname,
                                                 user.Surname,
@@ -61,26 +61,34 @@ namespace Blog.WebUI.Frontend.Controllers
                                                 user.Description,
                                                 user.Username,
                                                 user.Password,
-                                                filename);
+                                                imagebyte);
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
 
-        private string UplaodImage(HttpPostedFileBase imageFile)
+        private byte[] UploadImage(HttpPostedFileBase imageFile)
         {
-            string filename = string.Empty;
-            if (imageFile != null)
-            {
-                 filename = Path.GetFileName(imageFile.FileName);
-                 var path = Path.Combine(Server.MapPath("~/Images/") + filename);
-                 imageFile.SaveAs(path);
-            }
-            else
-            {
-                filename = "User-Default.jpg";
-            }
-            return filename;
+            //uploadImage
+            string filename = Path.GetFileName(imageFile.FileName);
+            var path = Path.Combine(Server.MapPath("~/Images/") + filename);
+            imageFile.SaveAs(path);
+
+            //get array bytes of image
+            MemoryStream target = new MemoryStream();
+            imageFile.InputStream.CopyTo(target);
+            byte[] data = target.ToArray();
+            return data;
         }
+
+
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            return null;
+        }
+
+
     }
 }

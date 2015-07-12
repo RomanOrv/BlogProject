@@ -10,31 +10,34 @@
 <h2>Index</h2>
 <h3>Blogs Table</h3>
 <div>
-@*    <input type="button" hre/>
-    <a href="#" title="New Blog"></a>*@
-    <table>
-        <thead>
-            <tr>
-                <th>№
-                </th>
-                <th>Title
-                </th>
-                <th>AuthorId
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var article in articles)
-            {
+    @* <a href="#" title="New Blog"></a>*@
+    <div class="container">
+        <table class="listArticles">
+            <thead>
                 <tr>
-                    <td>@article.Id</td>
-                    <td>@article.Title</td>
-                    <td>@article.AuthorId</td>
-                    <td><a href="@Url.Action("ShowBlog", new { id = article.Id })" class="btn btn-info">Show Blog</a></td>
+                    <th>№
+                    </th>
+                    <th>Title
+                    </th>
+                    <th>AuthorId
+                    </th>
+                    <th></th>
                 </tr>
-            }
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+                @foreach (var article in articles)
+                {
+                    <tr>
+                        <td>@article.Id</td>
+                        <td>@article.Title</td>
+                        <td>@article.AuthorId</td>
+                        <td>@Html.ActionLink("Show Article", "ShowArticle", "Home", new { id = article.Id }))</td>
+      @*                  <td><a href="@Url.Action("ShowBlog", new { id = article.Id })" class="btn btn-info">Show Blog</a></td>*@
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
 </div>

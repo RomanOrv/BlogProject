@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog.Entities\Blog.Entities.csproj">
-      <Project>{d9ea7881-65cb-4179-9363-733063af0443}</Project>
+      <Project>{c69b6cbb-5dd3-48d3-936e-6df42b71a847}</Project>
       <Name>Blog.Entities</Name>
     </ProjectReference>
   </ItemGroup>

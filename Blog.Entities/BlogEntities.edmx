@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BlogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BlogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="Id" />
@@ -31,9 +31,9 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="isAdmin" Type="bit" Nullable="false" />
           <Property Name="isEnable" Type="bit" Nullable="false" />
-          <Property Name="imgFile" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="imgFile" Type="varbinary(max)" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Article__AuthorI__1BFD2C07">
+        <Association Name="FK__Article__AuthorI__25869641">
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -50,12 +50,13 @@
         <EntityContainer Name="BlogModelStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Article__AuthorI__1BFD2C07" Association="Self.FK__Article__AuthorI__1BFD2C07">
+          <AssociationSet Name="FK__Article__AuthorI__25869641" Association="Self.FK__Article__AuthorI__25869641">
             <End Role="User" EntitySet="User" />
             <End Role="Article" EntitySet="Article" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BlogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -69,7 +70,7 @@
           <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Published" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Article__AuthorI__1273C1CD" FromRole="Article" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Article__AuthorI__25869641" FromRole="Article" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -86,10 +87,10 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="isAdmin" Type="Boolean" Nullable="false" />
           <Property Name="isEnable" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Article" Relationship="Self.FK__Article__AuthorI__1273C1CD" FromRole="User" ToRole="Article" />
-          <Property Name="imgFile" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="imgFile" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="Self.FK__Article__AuthorI__25869641" FromRole="User" ToRole="Article" />
         </EntityType>
-        <Association Name="FK__Article__AuthorI__1273C1CD">
+        <Association Name="FK__Article__AuthorI__25869641">
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -106,7 +107,7 @@
         <EntityContainer Name="BlogEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Article" EntityType="Self.Article" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK__Article__AuthorI__1273C1CD" Association="Self.FK__Article__AuthorI__1273C1CD">
+          <AssociationSet Name="FK__Article__AuthorI__25869641" Association="Self.FK__Article__AuthorI__25869641">
             <End Role="User" EntitySet="User" />
             <End Role="Article" EntitySet="Article" />
           </AssociationSet>
@@ -132,7 +133,6 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="BlogModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="imgFile" ColumnName="imgFile" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -144,6 +144,7 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
                 <ScalarProperty Name="isEnable" ColumnName="isEnable" />
+                <ScalarProperty Name="imgFile" ColumnName="imgFile" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

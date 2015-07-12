@@ -34,6 +34,17 @@ namespace Blog.Repository
         }
 
 
+        public byte[] GetContentImage(int id)
+        {
+            byte[] data;
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+              data =  context.CreateObjectSet<User>().Single(x=>x.Id == id).imgFile;
+            }
+            return data;
+        }
+
+
 
 
 
@@ -56,7 +67,7 @@ namespace Blog.Repository
             }
         }
 
-        public void AddNewUser(string firstname, string surname, string email, string description, string username, string password, string imagename )
+        public void AddNewUser(string firstname, string surname, string email, string description, string username, string password, byte[] imagebyte )
         {
             using (ObjectContext context = new ObjectContext(_connectionString))
             {
@@ -73,7 +84,7 @@ namespace Blog.Repository
                     Description = description,
                     Username = username,
                     Password = password,
-                    imgFile= imagename
+                    imgFile = imagebyte
                 };
 
                 users.AddObject(newUser);

@@ -1,7 +1,9 @@
 ﻿using Blog.Entities;
+using Blog.Repository;
 using Blog.WebUI.Admin.Code.Keys;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -17,14 +19,10 @@ namespace Blog.WebUI.Admin
 
 
 
-        //protected void Page_PreInit(object sender, EventArgs e)
-        //{
-        //    //var theme = Request["theme"];
-        //    if (Session[SessionKeys.USER_INFO] == null)
-        //    {
-        //        Response.Redirect("~/Default.aspx");
-        //    }
-        //}
+        public PersonInfo()
+        {
+
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -107,10 +105,8 @@ namespace Blog.WebUI.Admin
         private Image UploadImage(string file)
         {
             Image image = new Image();
-            string filename = Path.GetFileName(file);
-            //string path = Path.Combine(Environment.CurrentDirectory, "123.bmp");
-            string path = @"//localhost/Images/" + file;
-            image.ImageUrl = path;
+
+            image.ImageUrl = String.Format("~/Handlers/UserAvatar.ashx?userid={0}", _user.Id);
             image.Width = 100;
             image.Height = 100;
             image.AlternateText = "Profile image";
