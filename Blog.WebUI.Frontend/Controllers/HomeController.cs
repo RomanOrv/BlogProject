@@ -52,10 +52,6 @@ namespace Blog.WebUI.Frontend.Controllers
         [HttpGet]
         public ActionResult ShowArticle(int? id)
         {
-            //RTE.Editor textEditor = new RTE.Editor(System.Web.HttpContext.Current, "Editor1");
-            //textEditor.LoadFormData("Type here...");
-            //textEditor.MvcInit();
-            //ViewBag.Editor = textEditor.MvcGetString();
             ViewBag.Id = id;
             return View();
         }
