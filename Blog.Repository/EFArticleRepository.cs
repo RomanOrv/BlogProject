@@ -60,6 +60,18 @@ namespace Blog.Repository
         }
 
 
+
+        public void SetArticleContent(int id, string content)
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                Article article = context.CreateObjectSet<Article>().Single(x=> x.Id == id);
+                article.Content = content;
+                context.SaveChanges();
+            }
+        }
+
+
         public Article GetArticleForId(int id)
         {
             using (ObjectContext context = new ObjectContext(_connectionString))

@@ -13,5 +13,6 @@ namespace Blog.Repository
         bool CheckUniqueTitle(string title);
         void AddNewArticle(string title);
         Article GetArticleForId(int id);
+        void SetArticleContent(int id, string content);
     }
 }

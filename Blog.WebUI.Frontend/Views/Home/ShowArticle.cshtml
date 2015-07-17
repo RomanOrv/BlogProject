@@ -3,18 +3,30 @@
 @{
     ViewBag.Title = "ShowArticle";
     Layout = "~/Views/Shared/_Layout.cshtml";
+   
 }
 @{
-    int? Id = ViewBag.Id;
-}
+    string Title = ViewBag.ArTitle;
+    int ArticleId = ViewBag.Id;
 }
 
-<h2>Article @Id</h2>
+<hr />
+<h2>Article : @Title</h2>
+<img src="@Url.Action("GetProfileImage","Account", new {id = 1}) />
+<hr />
+<div id="divText" data-article-id="@ArticleId"></div>
+<hr />
 
-@using (Html.BeginForm()) 
+@Html.ActionLink("Write Article", "WriteArticle", "Home", new { title = Title, id = ArticleId }, null)
+
+
+
+<script src="~/Scripts/pages/showArticle.js"></script>
+
+@*@using (Html.BeginForm()) 
 {
-   @Html.Raw(ViewBag.Editor)
-}
+
+}*@
 
 <div>
     @Html.ActionLink("Back to List", "Index")

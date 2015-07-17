@@ -90,5 +90,14 @@ namespace Blog.WebUI.Frontend.Controllers
         }
 
 
+
+        public FileContentResult GetProfileImage(int id)
+        {
+            byte[] data = _userRepository.GetUser(id).imgFile;
+            return data != null 
+                ? new FileContentResult(data,"image/jpg")
+                :null;
+        }
+
     }
 }

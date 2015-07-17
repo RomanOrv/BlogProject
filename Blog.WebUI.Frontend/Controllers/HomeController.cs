@@ -1,4 +1,5 @@
 ﻿using Blog.Repository;
+using Blog.WebUI.Frontend.Code.Keys;
 using Blog.WebUI.Frontend.Models;
 using System;
 using System.Collections.Generic;
@@ -50,11 +51,50 @@ namespace Blog.WebUI.Frontend.Controllers
 
 
         [HttpGet]
-        public ActionResult ShowArticle(int? id)
+        public ActionResult ShowArticle(string title, int id)
         {
+            ViewBag.ArTitle = title;
+            ViewBag.Id = id;
+            // SessionKeys.ArticleId = 
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult WriteArticle(string title, int id)
+        {
+            ViewBag.ArTitle = title;
             ViewBag.Id = id;
             return View();
         }
+
+
+
+        [HttpPost]
+        public ActionResult GetFormattedText(int id)
+        {
+            string formattedText = _articleRepository
+                                    .GetArticleForId(id)
+                                    .Content;
+            string encodedText = Server.UrlEncode(formattedText);
+            return Json(new
+            {
+                formattedText = encodedText
+            });
+        }
+
+
+        [HttpPost]
+        public ActionResult SaveFormattedText(int id, string formattedText)
+        {
+            if (formattedText != string.Empty)
+            {
+                var decodedText = Server.UrlDecode(formattedText);
+                _articleRepository.SetArticleContent(id, decodedText);
+            }
+            return Json(new { id });
+        }
+
 
 
 
