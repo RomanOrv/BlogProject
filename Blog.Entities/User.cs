@@ -31,6 +31,7 @@ namespace Blog.Entities
         public bool isAdmin { get; set; }
         public bool isEnable { get; set; }
         public byte[] imgFile { get; set; }
+        public string imgFileName { get; set; }
     
         public virtual ICollection<Article> Article { get; set; }
     }

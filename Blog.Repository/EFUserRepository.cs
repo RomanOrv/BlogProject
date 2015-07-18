@@ -67,7 +67,7 @@ namespace Blog.Repository
             }
         }
 
-        public void AddNewUser(string firstname, string surname, string email, string description, string username, string password, byte[] imagebyte )
+        public void AddNewUser(string firstname, string surname, string email, string description, string username, string password, byte[] imagebyte, string fileName)
         {
             using (ObjectContext context = new ObjectContext(_connectionString))
             {
@@ -84,7 +84,8 @@ namespace Blog.Repository
                     Description = description,
                     Username = username,
                     Password = password,
-                    imgFile = imagebyte
+                    imgFile = imagebyte,
+                    imgFileName = fileName
                 };
 
                 users.AddObject(newUser);

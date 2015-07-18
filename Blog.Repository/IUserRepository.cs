@@ -13,7 +13,7 @@ namespace Blog.Repository
         User GetUser(int id);
         void UpdateUser(int id, bool isEnable);
         bool CheckUnicueUsername(string username);
-        void AddNewUser(string firstname, string surname, string email, string description, string username, string password, byte[] imagebyte);
+        void AddNewUser(string firstname, string surname, string email, string description, string username, string password, byte[] imagebyte, string fileName);
         byte[] GetContentImage(int id);
     }
 }

@@ -5,14 +5,33 @@
         var that = this;
 
         this.$finalTitle = undefined;
+        this.$imgProf = undefined;
+       var articleId = 0;
 
         this.initialize = function () {
             this.$finalTitle = $("#divText");
+            this.$imgProf = $("#imgProfile");
+            articleId = this.$finalTitle.data('article-id');
         };
+
+        this.setImageSrc = function () {
+
+            var xhr = $.ajax({
+                url: "/Account/GetProfileImagePath",
+                dataType: "json",
+                type: "GET",
+                data: {
+                    id: articleId
+                }
+            });
+
+            xhr.done(function (data) {
+                that.$imgProf.attr("src", "/Images/" + data.imgSrc);
+            });
+        }
 
         this.loadFormattedText = function () {
 
-            var articleId = this.$finalTitle.data('article-id');
             var xhr = $.ajax({
                 url: "/Home/GetFormattedText",
                 dataType: "json",
@@ -36,6 +55,7 @@
     $(function () {
         var page = new IndexPage();
         page.initialize();
+        page.setImageSrc();
         page.loadFormattedText();
     });
 

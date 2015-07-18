@@ -13,6 +13,7 @@ namespace Blog.WebUI.Frontend.Controllers
     public class AccountController : Controller
     {
         IUserRepository _userRepository;
+        const string DEF_IMG_FILE = "User-Default.jpg";
         public AccountController()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
@@ -53,7 +54,8 @@ namespace Blog.WebUI.Frontend.Controllers
         {
             if (ModelState.IsValid)
             {
-                byte[] imagebyte = UploadImage(user.File);
+                string imgFileName = GetImgFileName(user.File);
+                byte[] imagebyte = GetImageByteArray(user.File);
 
                 this._userRepository.AddNewUser(user.Firstname,
                                                 user.Surname,
@@ -61,23 +63,46 @@ namespace Blog.WebUI.Frontend.Controllers
                                                 user.Description,
                                                 user.Username,
                                                 user.Password,
-                                                imagebyte);
+                                                imagebyte,
+                                                imgFileName);
             }
             return RedirectToAction("Index", "Home");
         }
 
 
-        private byte[] UploadImage(HttpPostedFileBase imageFile)
+
+        private string GetImgFileName(HttpPostedFileBase imageFile)
         {
             //uploadImage
-            string filename = Path.GetFileName(imageFile.FileName);
-            var path = Path.Combine(Server.MapPath("~/Images/") + filename);
-            imageFile.SaveAs(path);
+            string filename = string.Empty;
+            if (imageFile != null)
+            {
+                filename = Path.GetFileName(imageFile.FileName);
+                var path = Path.Combine(Server.MapPath("~/Images/" + filename));
+                imageFile.SaveAs(path);
+            }
+            else
+            {
+                filename = DEF_IMG_FILE;
+            }
+            return filename;
+        }
+        
 
-            //get array bytes of image
-            MemoryStream target = new MemoryStream();
-            imageFile.InputStream.CopyTo(target);
-            byte[] data = target.ToArray();
+        private byte[] GetImageByteArray(HttpPostedFileBase imageFile)
+        {
+            byte[] data  = null;
+            if (imageFile != null)
+            {
+                //get array bytes of image
+                MemoryStream target = new MemoryStream();
+                imageFile.InputStream.CopyTo(target);
+                data = target.ToArray();
+            }
+            else
+            {
+                data = System.IO.File.ReadAllBytes(Server.MapPath("~/Images/" + DEF_IMG_FILE));
+            }
             return data;
         }
 
@@ -91,12 +116,10 @@ namespace Blog.WebUI.Frontend.Controllers
 
 
 
-        public FileContentResult GetProfileImage(int id)
+        public JsonResult GetProfileImagePath(int id)
         {
-            byte[] data = _userRepository.GetUser(id).imgFile;
-            return data != null 
-                ? new FileContentResult(data,"image/jpg")
-                :null;
+            string imgFilename = _userRepository.GetUser(id).imgFileName;
+            return Json(new { imgSrc = imgFilename }, JsonRequestBehavior.AllowGet);
         }
 
     }
