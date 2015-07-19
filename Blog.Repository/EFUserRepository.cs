@@ -84,6 +84,8 @@ namespace Blog.Repository
                     Description = description,
                     Username = username,
                     Password = password,
+                    isEnable = true,
+                    isAdmin = false,
                     imgFile = imagebyte,
                     imgFileName = fileName
                 };

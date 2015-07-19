@@ -6,31 +6,36 @@
 
         this.$finalTitle = undefined;
         this.$imgProf = undefined;
-       var articleId = 0;
+        this.$userPlace = undefined;
 
         this.initialize = function () {
             this.$finalTitle = $("#divText");
             this.$imgProf = $("#imgProfile");
-            articleId = this.$finalTitle.data('article-id');
+            this.$userPlace = $("#userPlace");
+            
+           
         };
 
         this.setImageSrc = function () {
+           var authorId = this.$finalTitle.data('author-id');
 
             var xhr = $.ajax({
                 url: "/Account/GetProfileImagePath",
                 dataType: "json",
                 type: "GET",
                 data: {
-                    id: articleId
+                    id: authorId
                 }
             });
 
             xhr.done(function (data) {
                 that.$imgProf.attr("src", "/Images/" + data.imgSrc);
+                that.$userPlace.html("<b>" + data.userName + "</b>");
             });
         }
 
         this.loadFormattedText = function () {
+           var articleId = this.$finalTitle.data('article-id');
 
             var xhr = $.ajax({
                 url: "/Home/GetFormattedText",

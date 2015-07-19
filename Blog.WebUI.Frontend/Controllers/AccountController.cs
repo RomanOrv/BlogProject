@@ -66,7 +66,7 @@ namespace Blog.WebUI.Frontend.Controllers
                                                 imagebyte,
                                                 imgFileName);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
 
@@ -119,7 +119,8 @@ namespace Blog.WebUI.Frontend.Controllers
         public JsonResult GetProfileImagePath(int id)
         {
             string imgFilename = _userRepository.GetUser(id).imgFileName;
-            return Json(new { imgSrc = imgFilename }, JsonRequestBehavior.AllowGet);
+            string username = _userRepository.GetUser(id).Username;
+            return Json(new { imgSrc = imgFilename, userName = username }, JsonRequestBehavior.AllowGet);
         }
 
     }

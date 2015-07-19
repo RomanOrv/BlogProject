@@ -1,5 +1,4 @@
 ﻿using Blog.Repository;
-using Blog.WebUI.Frontend.Code.Keys;
 using Blog.WebUI.Frontend.Models;
 using System;
 using System.Collections.Generic;
@@ -51,20 +50,21 @@ namespace Blog.WebUI.Frontend.Controllers
 
 
         [HttpGet]
-        public ActionResult ShowArticle(string title, int id)
+        public ActionResult ShowArticle(string title, int id, int authorId)
         {
             ViewBag.ArTitle = title;
             ViewBag.Id = id;
-            // SessionKeys.ArticleId = 
+            ViewBag.AuthorId = authorId;
             return View();
         }
 
 
         [HttpGet]
-        public ActionResult WriteArticle(string title, int id)
+        public ActionResult WriteArticle(string title, int id, int authorId)
         {
             ViewBag.ArTitle = title;
             ViewBag.Id = id;
+            ViewBag.AuthorId = authorId;
             return View();
         }
 
@@ -92,7 +92,7 @@ namespace Blog.WebUI.Frontend.Controllers
                 var decodedText = Server.UrlDecode(formattedText);
                 _articleRepository.SetArticleContent(id, decodedText);
             }
-            return Json(new { id });
+            return Json(new { Id = id });
         }
 
 

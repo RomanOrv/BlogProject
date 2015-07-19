@@ -1,4 +1,4 @@
-﻿@model Blog.WebUI.Frontend.Models.RegistrUserModel
+﻿
 
 @{
     ViewBag.Title = "ShowArticle";
@@ -8,20 +8,27 @@
 @{
     string Title = ViewBag.ArTitle;
     int ArticleId = ViewBag.Id;
+    int AuthorId = ViewBag.AuthorId;
 }
 
 <hr />
 <h2>Article : @Title</h2>
-<img id="imgProfile" src="x" width="50" />
+<div>
+    Author :
+    <br />
+    <img id="imgProfile" src="x" width="100" />
+    <span id="userPlace"></span>
+</div>
 <hr />
-<div id="divText" data-article-id="@ArticleId"></div>
+<div id="divText" data-article-id="@ArticleId" data-author-id="@AuthorId"></div>
 <hr />
 
-@Html.ActionLink("Write Article", "WriteArticle", "Home", new { title = Title, id = ArticleId }, null)
-
-
-
-<script src="~/Scripts/pages/showArticle.js"></script>
+@Html.ActionLink("Write Article", "WriteArticle", "Home", new { title = Title, id = ArticleId, authorId = AuthorId }, null)
+<hr />
+<div>
+    Add Comments ...
+</div>
+<hr />
 
 @*@using (Html.BeginForm()) 
 {
@@ -31,3 +38,6 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+<script src="~/Scripts/pages/showArticle.js"></script>

@@ -32,7 +32,7 @@
                         <td>@article.Id</td>
                         <td>@article.Title</td>
                         <td>@article.AuthorId</td>
-                        <td>@Html.ActionLink("Show Article", "ShowArticle", "Home", new { title = article.Title, id = article.Id }, null)</td>
+                        <td>@Html.ActionLink("Show Article", "ShowArticle", "Home", new { title = article.Title, id = article.Id, authorId = article.AuthorId }, null)</td>
                     </tr>
                 }
 

@@ -193,10 +193,12 @@
     <Content Include="Content\themes\bootstrap\bootstrap.css" />
     <Content Include="Content\themes\bootstrap\bootstrap.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\acfd7323a6b07b9f21034759bd8bf3c9.jpg" />
     <Content Include="Images\Barash.png" />
     <Content Include="Images\User-Default.jpg" />
     <Content Include="Content\themes\bootstrap\bootstrap-theme.css.map" />
     <Content Include="Content\themes\bootstrap\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -229,7 +231,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="Code\Keys\SessionKeys.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />

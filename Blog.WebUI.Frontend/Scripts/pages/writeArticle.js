@@ -22,6 +22,7 @@
             var formattedText = that.$htmlEditor.val();
             var articleId = $(this).data('article-id');
             var articleTitle = $(this).data('article-title');
+            var authorId = $(this).data('author-id');
 
             var xhr = $.ajax({
                 url: "/Home/SaveFormattedText",
@@ -35,7 +36,7 @@
 
             xhr.done(function (data) {
                 console.log("saveButton_Click - done", arguments);
-                window.location.href = "/Home/ShowArticle?title=" + articleTitle + "&id=" +data.id;
+                window.location.href = "/Home/ShowArticle?title=" + articleTitle + "&id=" + data.Id + "&authorId=" + authorId;
             });
         };
 

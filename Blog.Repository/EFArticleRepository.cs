@@ -48,7 +48,7 @@ namespace Blog.Repository
                 {
                     Id = +maxId,
                     Title = title,
-                    AuthorId = 1, //??????
+                    AuthorId = 2, //??????
                     Content = string.Empty,
                     CreationTime = DateTime.Now,
                     Published = true
