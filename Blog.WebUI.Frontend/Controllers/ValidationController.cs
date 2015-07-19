@@ -12,11 +12,10 @@ namespace Blog.WebUI.Frontend.Controllers
     {
         IUserRepository _userRepository;
         IArticleRepository _articleRepository;
-        public ValidationController()
+        public ValidationController(IUserRepository userRepository, IArticleRepository articleRepository)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
-            this._userRepository = new EFUserRepository(connectionString);
-            this._articleRepository = new EFArticleRepository(connectionString);
+            this._userRepository = userRepository;
+            this._articleRepository = articleRepository;
         }
 
 

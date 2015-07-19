@@ -16,7 +16,8 @@
 <div>
     Author :
     <br />
-    <img id="imgProfile" src="x" width="100" />
+  @*  <img id="imgProfile" src="x" width="100" />*@
+      <img id="imgProfile" src="@Url.Action("GetImage", "Account", new { id = AuthorId})" width="100" />
     <span id="userPlace"></span>
 </div>
 <hr />
@@ -26,7 +27,8 @@
 @Html.ActionLink("Write Article", "WriteArticle", "Home", new { title = Title, id = ArticleId, authorId = AuthorId }, null)
 <hr />
 <div>
-    Add Comments ...
+   @Html.Partial("ArticleCommentPartial")
+
 </div>
 <hr />
 

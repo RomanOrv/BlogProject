@@ -16,23 +16,23 @@
            
         };
 
-        this.setImageSrc = function () {
-           var authorId = this.$finalTitle.data('author-id');
+        //this.setImageSrc = function () {
+        //   var authorId = this.$finalTitle.data('author-id');
 
-            var xhr = $.ajax({
-                url: "/Account/GetProfileImagePath",
-                dataType: "json",
-                type: "GET",
-                data: {
-                    id: authorId
-                }
-            });
+        //    var xhr = $.ajax({
+        //        url: "/Account/GetProfileImagePath",
+        //        dataType: "json",
+        //        type: "GET",
+        //        data: {
+        //            id: authorId
+        //        }
+        //    });
 
-            xhr.done(function (data) {
-                that.$imgProf.attr("src", "/Images/" + data.imgSrc);
-                that.$userPlace.html("<b>" + data.userName + "</b>");
-            });
-        }
+        //    xhr.done(function (data) {
+        //        that.$imgProf.attr("src", "/Images/" + data.imgSrc);
+        //        that.$userPlace.html("<b>" + data.userName + "</b>");
+        //    });
+        //}
 
         this.loadFormattedText = function () {
            var articleId = this.$finalTitle.data('article-id');
@@ -60,7 +60,7 @@
     $(function () {
         var page = new IndexPage();
         page.initialize();
-        page.setImageSrc();
+       // page.setImageSrc();
         page.loadFormattedText();
     });
 

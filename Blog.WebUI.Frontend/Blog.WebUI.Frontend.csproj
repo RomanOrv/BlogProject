@@ -253,6 +253,7 @@
     <Content Include="Views\Home\NewArticle.cshtml" />
     <Content Include="Views\Home\ShowArticle.cshtml" />
     <Content Include="Views\Home\WriteArticle.cshtml" />
+    <Content Include="Views\Home\ArticleCommentPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -14,10 +14,9 @@ namespace Blog.WebUI.Frontend.Controllers
     {
         IUserRepository _userRepository;
         const string DEF_IMG_FILE = "User-Default.jpg";
-        public AccountController()
+        public AccountController(IUserRepository userRepository)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
-            this._userRepository = new EFUserRepository(connectionString);
+            this._userRepository = userRepository;
         }
 
 
@@ -122,6 +121,14 @@ namespace Blog.WebUI.Frontend.Controllers
             string username = _userRepository.GetUser(id).Username;
             return Json(new { imgSrc = imgFilename, userName = username }, JsonRequestBehavior.AllowGet);
         }
+
+        public FileContentResult GetImage(int id)
+        {
+            byte[] data = _userRepository.GetUser(id).imgFile;
+            return new FileContentResult(data, "image/jpeg");
+        }
+
+
 
     }
 }

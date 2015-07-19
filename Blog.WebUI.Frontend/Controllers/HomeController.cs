@@ -13,11 +13,10 @@ namespace Blog.WebUI.Frontend.Controllers
     public class HomeController : Controller
     {
         private readonly IArticleRepository _articleRepository;
-        public HomeController()
+        public HomeController(IArticleRepository articleRepository)
         {
             RTE.Editor editor = new RTE.Editor();
-            string connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
-            this._articleRepository = new EFArticleRepository(connectionString);
+            this._articleRepository = articleRepository;
         }
 
 
