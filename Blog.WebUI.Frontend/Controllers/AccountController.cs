@@ -1,4 +1,5 @@
 ﻿using Blog.Repository;
+using Blog.Entities;
 using Blog.WebUI.Frontend.Models;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Blog.WebUI.Frontend.Controllers
     {
         IUserRepository _userRepository;
         const string DEF_IMG_FILE = "User-Default.jpg";
+        const string DEF_IMAGE_TYPE = "image/jpeg";
         public AccountController(IUserRepository userRepository)
         {
             this._userRepository = userRepository;
@@ -53,7 +55,7 @@ namespace Blog.WebUI.Frontend.Controllers
         {
             if (ModelState.IsValid)
             {
-                string imgFileName = GetImgFileName(user.File);
+                string imgFileType = GetImgFileType(user.File);
                 byte[] imagebyte = GetImageByteArray(user.File);
 
                 this._userRepository.AddNewUser(user.Firstname,
@@ -63,28 +65,16 @@ namespace Blog.WebUI.Frontend.Controllers
                                                 user.Username,
                                                 user.Password,
                                                 imagebyte,
-                                                imgFileName);
+                                                imgFileType );
             }
             return RedirectToAction("Login", "Account");
         }
 
 
 
-        private string GetImgFileName(HttpPostedFileBase imageFile)
+        private string GetImgFileType(HttpPostedFileBase imageFile)
         {
-            //uploadImage
-            string filename = string.Empty;
-            if (imageFile != null)
-            {
-                filename = Path.GetFileName(imageFile.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images/" + filename));
-                imageFile.SaveAs(path);
-            }
-            else
-            {
-                filename = DEF_IMG_FILE;
-            }
-            return filename;
+            return (imageFile != null) ? imageFile.ContentType : DEF_IMG_FILE;
         }
         
 
@@ -93,7 +83,6 @@ namespace Blog.WebUI.Frontend.Controllers
             byte[] data  = null;
             if (imageFile != null)
             {
-                //get array bytes of image
                 MemoryStream target = new MemoryStream();
                 imageFile.InputStream.CopyTo(target);
                 data = target.ToArray();
@@ -115,17 +104,16 @@ namespace Blog.WebUI.Frontend.Controllers
 
 
 
-        public JsonResult GetProfileImagePath(int id)
+        public JsonResult GetGetUserName(int id)
         {
-            string imgFilename = _userRepository.GetUser(id).imgFileName;
             string username = _userRepository.GetUser(id).Username;
-            return Json(new { imgSrc = imgFilename, userName = username }, JsonRequestBehavior.AllowGet);
+            return Json(new { userName = username }, JsonRequestBehavior.AllowGet);
         }
 
-        public FileContentResult GetImage(int id)
+        public FileContentResult GetImage(int authorId)
         {
-            byte[] data = _userRepository.GetUser(id).imgFile;
-            return new FileContentResult(data, "image/jpeg");
+            User user = _userRepository.GetUser(authorId);
+            return new FileContentResult(user.imgFile, user.ImageMimeType);
         }
 
 

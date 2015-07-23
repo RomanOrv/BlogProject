@@ -32,7 +32,7 @@
           <Property Name="isAdmin" Type="bit" Nullable="false" />
           <Property Name="isEnable" Type="bit" Nullable="false" />
           <Property Name="imgFile" Type="varbinary(max)" Nullable="false" />
-          <Property Name="imgFileName" Type="varchar" MaxLength="50" />
+          <Property Name="ImageMimeType" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK__Article__AuthorI__38996AB5">
           <End Role="User" Type="Self.User" Multiplicity="1">
@@ -89,7 +89,7 @@
           <Property Name="isEnable" Type="Boolean" Nullable="false" />
           <Property Name="imgFile" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Article" Relationship="Self.FK__Article__AuthorI__25869641" FromRole="User" ToRole="Article" />
-          <Property Name="imgFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Article__AuthorI__25869641">
           <End Role="User" Type="Self.User" Multiplicity="1">
@@ -134,7 +134,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="BlogModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="imgFileName" ColumnName="imgFileName" />
+                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />

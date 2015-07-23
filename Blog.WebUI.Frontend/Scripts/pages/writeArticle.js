@@ -9,11 +9,9 @@
 
         this.initialize = function () {
 
-            this.$htmlEditor = $('#id_cazary_full');
+            this.$htmlEditor = $('#htmlEditor');
             this.$saveButton = $("#save-button");
-            this.$htmlEditor.cazary({
-                commands: "FULL"
-            });
+            this.$htmlEditor.wysihtml5();
 
             this.$saveButton.on("click", this.onSaveButton);
         };
@@ -40,11 +38,35 @@
             });
         };
 
+
+        this.loadFormattedText = function () {
+            var articleId = that.$saveButton.data('article-id');
+
+            var xhr = $.ajax({
+                url: "/Home/GetFormattedText",
+                dataType: "json",
+                type: "POST",
+                data: {
+                    id: articleId
+                }
+            });
+
+            xhr.done(function (data) {
+                var decodedText = unescape(data.formattedText);
+                var replacedText = decodedText.split('+').join(' ');
+
+                //var htmlText = $.parseHTML(replacedText);
+                that.$htmlEditor.data("wysihtml5").editor.setValue(replacedText);
+                //that.$finalTitle.append(htmlText);
+            });
+        };
+
     };
 
     $(function () {
         var page = new IndexPage();
         page.initialize();
+        page.loadFormattedText();
     });
 
 

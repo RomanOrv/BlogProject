@@ -7,17 +7,22 @@
     int ArticleId = ViewBag.Id;
     int AuthorId = ViewBag.AuthorId;
 }
+<link href="~/Styles/bootstrap-wysihtml5.css" rel="stylesheet" type="text/css"/>
+<link href="~/Styles/bootstrap.css" rel="stylesheet" type="text/css"/>
+@*    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />*@
 
 <h2>Write article : @Title</h2>
 
 <form method="post" style="width: 450px;">
-    <div class="container">
-        <textarea id="id_cazary_full" style="width: 640px; height: 400px;">full mode</textarea>
+    <div class="my_container">
+        <textarea id="htmlEditor" style="width: 640px; height: 400px; margin-left:100px" ></textarea>
         <div class="save-button-wrapper">
             <input id="save-button" type="button" value="Save Formatted Text" data-article-id="@ArticleId" data-article-title="@Title" data-author-id="@AuthorId"/>
         </div>
 
-        <script src="~/Scripts/libs/cazary/cazary.js" type="text/javascript"></script>
+        <script src="~/Scripts/libs/wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
+        <script src="~/Scripts/libs/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+        <script src="~/Scripts/libs/wysihtml5/bootstrap-wysihtml5.js" type="text/javascript"></script>
         <script src="~/Scripts/pages/writeArticle.js" type="text/javascript"></script>
     </div>
 </form>

@@ -61,6 +61,8 @@ namespace Blog.WebUI.Admin
             CreateTableRow("isAdmin", user.isAdmin);
 
             CreateTableRow("Image", user.imgFile);
+
+            CreateTableRow("ImageType", user.ImageMimeType);
         }
 
 

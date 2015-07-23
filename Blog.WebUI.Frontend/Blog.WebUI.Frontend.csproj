@@ -193,42 +193,40 @@
     <Content Include="Content\themes\bootstrap\bootstrap.css" />
     <Content Include="Content\themes\bootstrap\bootstrap.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="Images\acfd7323a6b07b9f21034759bd8bf3c9.jpg" />
-    <Content Include="Images\Barash.png" />
     <Content Include="Images\User-Default.jpg" />
     <Content Include="Content\themes\bootstrap\bootstrap-theme.css.map" />
     <Content Include="Content\themes\bootstrap\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\libs\jquery\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\libs\bootstrap\bootstrap.js" />
+    <Content Include="Scripts\libs\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\libs\jquery\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\libs\cazary\cazary.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\libs\jquery\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\libs\jquery\jquery-2.1.4.min.map" />
+    <None Include="Scripts\libs\jquery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\libs\jquery\jquery.validate.js" />
+    <Content Include="Scripts\libs\jquery\jquery.validate.min.js" />
+    <Content Include="Scripts\libs\jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\libs\jquery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\libs\wysihtml5\bootstrap-wysihtml5.js" />
+    <Content Include="Scripts\libs\wysihtml5\wysihtml5-0.3.0.js" />
+    <Content Include="Scripts\libs\others\modernizr-2.8.3.js" />
     <Content Include="Scripts\pages\showArticle.js" />
     <Content Include="Scripts\pages\writeArticle.js" />
-    <Content Include="Scripts\script.js" />
     <Content Include="StyleImages\arrow-down.png" />
     <Content Include="StyleImages\blogImage.jpg" />
     <Content Include="StyleImages\sprite.png" />
     <Content Include="StyleImages\User-Default.jpg" />
+    <Content Include="Styles\bootstrap-wysihtml5.css" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\Site.css" />
-    <Content Include="Styles\styleHtmlEditor.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />

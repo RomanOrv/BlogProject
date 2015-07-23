@@ -1,4 +1,5 @@
-﻿using Blog.Repository;
+﻿using Blog.Entities;
+using Blog.Repository;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,10 +19,11 @@ namespace Blog.WebUI.Admin.Handlers
         public void ProcessRequest(HttpContext context)
         {
             string _connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
-            IUserRepository _userrepository = new EFUserRepository(_connectionString);
-          int userId = Convert.ToInt32(HttpContext.Current.Request["userId"]);
-            context.Response.ContentType = "image/jpeg";
-            byte[] data = _userrepository.GetContentImage(userId);
+            IUserRepository _userRepository = new EFUserRepository(_connectionString);
+            int userId = Convert.ToInt32(HttpContext.Current.Request["userId"]);
+            User user = _userRepository.GetUser(userId);
+            context.Response.ContentType = user.ImageMimeType;
+            byte[] data = user.imgFile;
 
 
             using (MemoryStream ms = new MemoryStream())
