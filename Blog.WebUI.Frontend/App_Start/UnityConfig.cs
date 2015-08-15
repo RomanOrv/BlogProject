@@ -3,6 +3,7 @@ using Microsoft.Practices.Unity;
 using Unity.Mvc5;
 using System.Configuration;
 using Blog.Repository;
+using System.Web;
 
 namespace Blog.WebUI.Frontend
 {
@@ -14,7 +15,12 @@ namespace Blog.WebUI.Frontend
             string connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
             container.RegisterType<IArticleRepository, EFArticleRepository>(new InjectionConstructor(connectionString));
             container.RegisterType<IUserRepository, EFUserRepository>(new InjectionConstructor(connectionString));
-            
+            container.RegisterType<IPictureRepository, EFPictureRepository>(new InjectionConstructor(connectionString));
+            container.RegisterType<ICommentRepository, EFCommentRepository>(new InjectionConstructor(connectionString));
+            container.RegisterType<ISecurityManager, FormsSecurityManager>(
+                new InjectionConstructor(new EFUserRepository(connectionString))
+                );
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

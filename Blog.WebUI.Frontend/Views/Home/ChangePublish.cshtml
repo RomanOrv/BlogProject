@@ -1,0 +1,45 @@
+﻿@model Blog.Entities.Article
+
+@{
+    ViewBag.Title = "ChangePublish";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ChangePublish</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Article</h4>
+        <hr />
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.AuthorId)
+        @Html.HiddenFor(model => model.Content)
+
+
+        <table>
+            <tr>
+                <td>@Html.LabelFor(model => model.Title)</td>
+                <td>@Html.DisplayFor(model => model.Title)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.CreationTime)</td>
+                <td>@Html.DisplayFor(model => model.CreationTime)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Published)</td>
+                <td>@Html.EditorFor(model => model.Published)</td>
+            </tr>
+        </table>
+
+        <div>
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

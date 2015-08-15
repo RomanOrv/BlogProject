@@ -1,0 +1,23 @@
+﻿@using Blog.WebUI.Frontend.Models
+
+@{
+    CommentViewModel[] listComm = ViewBag.Commentaries;
+}
+    
+
+@foreach (var item in listComm)
+{
+    <div style="margin-top: 10px; background-color: aqua;">     
+            <p>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.Content)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.Date)
+            </p>
+    </div>
+}
+
+

@@ -1,4 +1,6 @@
 ﻿@using Blog.Entities
+
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,19 +9,72 @@
     List<Article> articles = ViewBag.Articles;
 }
 
+<style type="text/css">
+    .webGrid {
+        margin: 4px;
+        border-collapse: collapse;
+        width: 500px;
+        background-color: #FCFCFC;
+    }
+
+    .header {
+        background-color: #C1D4E6;
+        font-weight: bold;
+        color: #FFF;
+    }
+
+    .webGrid th, .webGrid td {
+        border: 1px solid #C0C0C0;
+        padding: 5px;
+    }
+
+    .alt {
+        background-color: #E4E9F5;
+        color: #000;
+    }
+
+    .gridHead a:hover {
+        text-decoration: underline;
+    }
+
+    .description {
+        width: auto;
+    }
+
+    .select {
+        background-color: #389DF5;
+    }
+</style>
+
 <h2>Index</h2>
 <h3>Blogs Table</h3>
 <div>
     @* <a href="#" title="New Blog"></a>*@
     <div class="container">
+
+        @Html.Partial("_SearchArticlePartial")
+
+
+        @*@{
+            
+           var obj = new WebGrid(articles);
+        }
+        @obj.GetHtml();*@
+
+     
+
+
         <table class="listArticles">
             <thead>
                 <tr>
-                    <th>№
+                    <th>
+                        №
                     </th>
-                    <th>Title
+                    <th>
+                        Title
                     </th>
-                    <th>AuthorId
+                    <th>
+                        AuthorId
                     </th>
                     <th></th>
                 </tr>
@@ -35,7 +90,6 @@
                         <td>@Html.ActionLink("Show Article", "ShowArticle", "Home", new { title = article.Title, id = article.Id, authorId = article.AuthorId }, null)</td>
                     </tr>
                 }
-
             </tbody>
         </table>
     </div>

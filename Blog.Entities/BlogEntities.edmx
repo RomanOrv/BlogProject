@@ -16,6 +16,25 @@
           <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="Published" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="CommDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileData" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ImageMimeType" Type="varchar" MaxLength="50" />
+          <Property Name="Src" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -31,10 +50,9 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="isAdmin" Type="bit" Nullable="false" />
           <Property Name="isEnable" Type="bit" Nullable="false" />
-          <Property Name="imgFile" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ImageMimeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PictureId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Article__AuthorI__38996AB5">
+        <Association Name="FK__Article__AuthorI__15502E78">
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -48,12 +66,64 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Comment__Article__286302EC">
+          <End Role="Article" Type="Self.Article" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__AuthorI__276EDEB3">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__PictureId__1273C1CD">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PictureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BlogModelStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Article__AuthorI__38996AB5" Association="Self.FK__Article__AuthorI__38996AB5">
+          <AssociationSet Name="FK__Article__AuthorI__15502E78" Association="Self.FK__Article__AuthorI__15502E78">
             <End Role="User" EntitySet="User" />
             <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__Article__286302EC" Association="Self.FK__Comment__Article__286302EC">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__AuthorI__276EDEB3" Association="Self.FK__Comment__AuthorI__276EDEB3">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__PictureId__1273C1CD" Association="Self.FK__User__PictureId__1273C1CD">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -70,7 +140,18 @@
           <Property Name="CreationTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Published" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Article__AuthorI__25869641" FromRole="Article" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Article__AuthorI__15502E78" FromRole="Article" ToRole="User" />
+          <NavigationProperty Name="Comment" Relationship="BlogModel.FK__Comment__Article__286302EC" FromRole="Article" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileData" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Src" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__PictureId__1273C1CD" FromRole="Picture" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -87,11 +168,12 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="isAdmin" Type="Boolean" Nullable="false" />
           <Property Name="isEnable" Type="Boolean" Nullable="false" />
-          <Property Name="imgFile" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="Article" Relationship="Self.FK__Article__AuthorI__25869641" FromRole="User" ToRole="Article" />
-          <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PictureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="Self.FK__Article__AuthorI__15502E78" FromRole="User" ToRole="Article" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK__User__PictureId__1273C1CD" FromRole="User" ToRole="Picture" />
+          <NavigationProperty Name="Comment" Relationship="BlogModel.FK__Comment__AuthorI__276EDEB3" FromRole="User" ToRole="Comment" />
         </EntityType>
-        <Association Name="FK__Article__AuthorI__25869641">
+        <Association Name="FK__Article__AuthorI__15502E78">
           <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -105,14 +187,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__User__PictureId__1273C1CD">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PictureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BlogEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Article" EntityType="Self.Article" />
+          <EntitySet Name="Picture" EntityType="Self.Picture" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK__Article__AuthorI__25869641" Association="Self.FK__Article__AuthorI__25869641">
+          <AssociationSet Name="FK__Article__AuthorI__15502E78" Association="Self.FK__Article__AuthorI__15502E78">
             <End Role="User" EntitySet="User" />
             <End Role="Article" EntitySet="Article" />
           </AssociationSet>
+          <AssociationSet Name="FK__User__PictureId__1273C1CD" Association="Self.FK__User__PictureId__1273C1CD">
+            <End Role="Picture" EntitySet="Picture" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <EntitySet Name="Comment" EntityType="BlogModel.Comment" />
+          <AssociationSet Name="FK__Comment__Article__286302EC" Association="BlogModel.FK__Comment__Article__286302EC">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comment__AuthorI__276EDEB3" Association="BlogModel.FK__Comment__AuthorI__276EDEB3">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Article" Relationship="BlogModel.FK__Comment__Article__286302EC" FromRole="Comment" ToRole="Article" />
+          <NavigationProperty Name="User" Relationship="BlogModel.FK__Comment__AuthorI__276EDEB3" FromRole="Comment" ToRole="User" />
+          <Property Name="CommDate" Type="DateTime" Precision="3" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Comment__Article__286302EC">
+          <End Type="BlogModel.Article" Role="Article" Multiplicity="1" />
+          <End Type="BlogModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comment__AuthorI__276EDEB3">
+          <End Type="BlogModel.User" Role="User" Multiplicity="1" />
+          <End Type="BlogModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="AuthorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -131,10 +277,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Picture">
+            <EntityTypeMapping TypeName="BlogModel.Picture">
+              <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileData" ColumnName="FileData" />
+                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+                <ScalarProperty Name="Src" ColumnName="Src" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="BlogModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Firstname" ColumnName="Firstname" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -146,7 +301,18 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
                 <ScalarProperty Name="isEnable" ColumnName="isEnable" />
-                <ScalarProperty Name="imgFile" ColumnName="imgFile" />
+                <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="BlogModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommDate" ColumnName="CommDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

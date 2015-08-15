@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @*    <link href="~/Styles/bootstrap.css" rel="stylesheet" type="text/css"/>*@
-@*    <link href="~/Styles/styleHtmlEditor.css" rel="stylesheet" type="text/css" />*@
-    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    @*    <link href="~/Styles/styleHtmlEditor.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css"/>
+
+    <script src="~/Scripts/libs/others/modernizr-2.8.3.js"></script>
     <script src="~/Scripts/libs/jquery/jquery-2.1.4.js"></script>
-    <script src="~/Scripts/libs/jquery-2.1.4.min.js" type="text/javascript"></script>
-    <script src="~/Scripts/libs/jquery.validate.js" type="text/javascript"></script>
-    <script src="~/Scripts/libs/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="~/Scripts/libs/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+    <script src="~/Scripts/libs/jquery/jquery.validate.js"></script>
+    <script src="~/Scripts/libs/jquery/jquery.validate.unobtrusive.js"></script>
 
 </head>
 <body class="">
 
 
     <div id="wrapper">
+   
         <div id="header">
             <div id="logo">
                 <img src="~/StyleImages/blogImage.jpg" height="150" alt="email image">
@@ -27,18 +27,16 @@
             <div id="titlesPlace">
                 <div id="mainTitle">
                     <h1>My Blog</h1>
-                    <div id="userLabel">
-                        Undefined
-                    </div>
                     <div id="userLogin">
-                        <img src="~/StyleImages/User-Default.jpg" alt="sign image" />
+                        @Html.Partial("_LoginPartial")
+                        @*<img src="~/StyleImages/User-Default.jpg" alt="sign image" />
                         <ul class="sub-menu">
                             <li>@Html.ActionLink("Registration", "Registration", "Account")</li>
                             <li>@Html.ActionLink("Login", "Login", "Account")</li>
                             <li>
                                 @Html.ActionLink("Log out", "Registration", "Account")
                             </li>
-                        </ul>
+                        </ul>*@
                     </div>
                 </div>
                 <div id="pageTitle">
@@ -55,6 +53,9 @@
                     <li>
                         @Html.ActionLink("New Article", "NewArticle", "Home")
                     </li>
+                    <li>
+                        @Html.ActionLink("Own Articles", "ShowOwnArticles", "Home")
+                    </li>
                 </ul>
             </div>
             <div id="content">
@@ -64,12 +65,12 @@
     </div>
 
     @*
-    <footer>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; @DateTime.Now.Year - My Blog</p>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My Blog</p>
+                </div>
             </div>
-        </div>
-    </footer>*@
+        </footer>*@
 </body>
 </html>

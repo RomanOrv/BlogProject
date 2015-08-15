@@ -464,7 +464,7 @@ intellisense.annotate(_object, {
   },
   'has': function() {
     /// <signature>
-    ///   <summary>Determine whether a supplied callback is in a list</summary>
+    ///   <summary>Determine whether a supplied callback is in a IEnumerable</summary>
     ///   <param name="callback" type="Function">The callback to search for.</param>
     ///   <returns type="Boolean" />
     /// </signature>

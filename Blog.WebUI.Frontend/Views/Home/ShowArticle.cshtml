@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Collections.Generic
+@using Blog.Entities
 
 @{
     ViewBag.Title = "ShowArticle";
@@ -9,6 +10,7 @@
     string Title = ViewBag.ArTitle;
     int ArticleId = ViewBag.Id;
     int AuthorId = ViewBag.AuthorId;
+    Comment[] listComment = ViewBag.ListComment;
 }
 
 <hr />
@@ -26,7 +28,14 @@
 @Html.ActionLink("Write Article", "WriteArticle", "Home", new { title = Title, id = ArticleId, authorId = AuthorId }, null)
 <hr />
 <div>
-   @Html.Partial("ArticleCommentPartial")
+    @{
+    Html.ViewData.Add(new KeyValuePair<string, object>("ArticleId",ArticleId));
+    Html.RenderPartial("ArticleCommentPartial", Html.ViewData);
+
+    //Html.RenderPartial("_CreateEditDisplay", Model, Html.ViewData);
+    }
+    @*@Html.Partial("ArticleCommentPartial", ArticleId);*@
+    @*@Html.Action("ArticleCommentPartial", ArticleId);*@
 
 </div>
 <hr />
@@ -38,6 +47,11 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<div style="margin-top:10px">
+    @Html.Action("CommentListPartial", new { commetaries = listComment })
 </div>
 
 

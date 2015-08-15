@@ -37,7 +37,7 @@
            var articleId = this.$finalTitle.data('article-id');
 
             var xhr = $.ajax({
-                url: "/Home/GetFormattedText",
+                url: "/Home/GetFormattedText_Show",
                 dataType: "json",
                 type: "POST",
                 data: {
@@ -59,7 +59,7 @@
     $(function () {
         var page = new IndexPage();
         page.initialize();
-       // page.setImageSrc();
+        page.setImageSrc();
         page.loadFormattedText();
     });
 

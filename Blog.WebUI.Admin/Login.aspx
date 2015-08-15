@@ -4,9 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Login ID="Login1" runat="server" BorderStyle="Solid" BorderWidth="2px" Height="150px" CssClass="login" TitleTextStyle-Font-Bold="true"
+    <asp:Login ID="lgAuth" runat="server" BorderStyle="Solid" BorderWidth="2px" Height="150px" CssClass="login" TitleTextStyle-Font-Bold="true"
         TextBoxStyle-Font-Bold="false" LabelStyle-Font-Bold="true" CheckBoxStyle-Font-Bold="false" BackColor="Bisque"
-         OnLoginError="Login1_LoginError">
+         OnAuthenticate="lgAuth_OnAuthenticate" OnLoggingIn="lgAuth_OnLoggingIn">
         <ValidatorTextStyle ForeColor="Red" />
     </asp:Login>
 </asp:Content>

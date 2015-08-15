@@ -9,9 +9,43 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+
+
+
     <form id="form1" runat="server">
         <div class="wrapper">
+            <asp:LoginView runat="server" ViewStateMode="Disabled">
+                <AnonymousTemplate>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" href="~/Login.aspx">Log in</a></li>
+                    </ul>
+                </AnonymousTemplate>
+                <RoleGroups>
+                    <asp:RoleGroup Roles="admin">
+                        <ContentTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>Hello, <%: Context.User.Identity.Name  %> !</li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="OnLoggingOut" />
+                                </li>
+                            </ul>
+                        </ContentTemplate>
+                    </asp:RoleGroup>
+                    <asp:RoleGroup Roles="user">
+                        <ContentTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>Hello, <%: Context.User.Identity.Name  %> is not administrator !</li>
+                                <li>
+                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="OnLoggingOut" />
+                                </li>
+                            </ul>
+                        </ContentTemplate>
+                    </asp:RoleGroup>
+                </RoleGroups>
+            </asp:LoginView>
+
             <div class="header">
+
                 <div class="adminTitle">
                     <h2>Blog. Admin Console</h2>
                 </div>
@@ -20,9 +54,9 @@
                 </div>
             </div>
             <div class="main">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-                </div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
             <div class="footer">
             </div>
         </div>

@@ -18,12 +18,14 @@ namespace Blog.WebUI.Admin.Handlers
 
         public void ProcessRequest(HttpContext context)
         {
-            string _connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
-            IUserRepository _userRepository = new EFUserRepository(_connectionString);
+            string connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
+            IUserRepository userRepository = new EFUserRepository(connectionString);
+            IPictureRepository pictureRepository = new EFPictureRepository(connectionString);
             int userId = Convert.ToInt32(HttpContext.Current.Request["userId"]);
-            User user = _userRepository.GetUser(userId);
-            context.Response.ContentType = user.ImageMimeType;
-            byte[] data = user.imgFile;
+            User user = userRepository.GetUser(userId);
+            Picture picture = pictureRepository.GetPicture(user.PictureId);
+            context.Response.ContentType = picture.ImageMimeType;
+            byte[] data = picture.FileData;
 
 
             using (MemoryStream ms = new MemoryStream())

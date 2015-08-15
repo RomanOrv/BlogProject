@@ -1,0 +1,30 @@
+﻿@using System.Web.Security;
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <table>
+            <tr>
+                <td>@Html.Label("Hello " + User.Identity.Name + "!")</td>
+                <td rowspan="2"> <img src="@Url.Action("GetImageProf", "Account", new { username = User.Identity.Name })" alt="sign image" /></td>
+            </tr>
+            <tr>
+                <td><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></td>
+            </tr>
+        </table>
+    }
+}
+else
+{
+    <table>
+        <tr>
+            <td>@Html.ActionLink("Register", "Registration", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</td>
+            <td rowspan="2"> <img src="~/StyleImages/User-Default.jpg" alt="sign image" /></td>
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</td>
+        </tr>
+    </table>
+}

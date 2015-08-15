@@ -41,14 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFArticleRepository.cs" />
+    <Compile Include="EFCommentRepository.cs" />
     <Compile Include="IArticleRepository.cs" />
+    <Compile Include="ICommentRepository.cs" />
+    <Compile Include="IPictureRepository.cs" />
+    <Compile Include="EFPictureRepository.cs" />
     <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EFUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blog.Entities\Blog.Entities.csproj">
-      <Project>{c69b6cbb-5dd3-48d3-936e-6df42b71a847}</Project>
+      <Project>{67739663-2c86-405b-98c6-1a2cdbc7021b}</Project>
       <Name>Blog.Entities</Name>
     </ProjectReference>
   </ItemGroup>

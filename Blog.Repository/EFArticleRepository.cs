@@ -21,8 +21,7 @@ namespace Blog.Repository
             using (ObjectContext context = new ObjectContext(_connectionString))
             {
                 return context.CreateObjectSet<Article>()
-                    .Where(u => u.Published == true)
-                    .ToList();
+                    .Where(u => u.Published == true).ToList();
             }
         }
 
@@ -32,12 +31,12 @@ namespace Blog.Repository
             using (ObjectContext context = new ObjectContext(_connectionString))
             {
                 bool isExists = context.CreateObjectSet<Article>().Any(u => u.Title == title);
-                return isExists ? false : true;
+                return !isExists;
             };
         }
 
 
-        public void AddNewArticle(string title)
+        public void AddNewArticle(string title, int authorId)
         {
             using (ObjectContext context = new ObjectContext(_connectionString))
             {
@@ -48,7 +47,7 @@ namespace Blog.Repository
                 {
                     Id = +maxId,
                     Title = title,
-                    AuthorId = 2, //??????
+                    AuthorId = authorId, 
                     Content = string.Empty,
                     CreationTime = DateTime.Now,
                     Published = true
@@ -79,5 +78,27 @@ namespace Blog.Repository
                 return context.CreateObjectSet<Article>().FirstOrDefault(x => x.Id == id);
             }
         }
+
+
+        public List<Article> GetUserArticles(int userId)
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                return context.CreateObjectSet<Article>()
+                    .Where(u => u.AuthorId == userId).ToList();
+            }
+        }
+
+
+        public void ChangePublishingStatus(Article article)
+        {
+            using (ObjectContext context = new ObjectContext(_connectionString))
+            {
+                var oldArticle = context.CreateObjectSet<Article>().Single(x => x.Id ==article.Id);
+                oldArticle.Published = article.Published;
+                context.SaveChanges();
+            }
+        }
+
     }
 }

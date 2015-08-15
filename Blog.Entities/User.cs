@@ -17,6 +17,7 @@ namespace Blog.Entities
         public User()
         {
             this.Article = new HashSet<Article>();
+            this.Comment = new HashSet<Comment>();
         }
     
         public int Id { get; set; }
@@ -30,9 +31,10 @@ namespace Blog.Entities
         public string Password { get; set; }
         public bool isAdmin { get; set; }
         public bool isEnable { get; set; }
-        public byte[] imgFile { get; set; }
-        public string ImageMimeType { get; set; }
+        public int PictureId { get; set; }
     
         public virtual ICollection<Article> Article { get; set; }
+        public virtual Picture Picture { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
     }
 }

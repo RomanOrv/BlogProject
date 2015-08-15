@@ -15,13 +15,16 @@ namespace Blog.WebUI.Admin
 {
     public partial class PersonInfo : System.Web.UI.Page
     {
+        private readonly string _connectionString;
         private User _user;
+        private IPictureRepository _pictureRepository;
 
 
 
         public PersonInfo()
         {
-
+            this._connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
+            this._pictureRepository = new EFPictureRepository(this._connectionString);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -60,9 +63,11 @@ namespace Blog.WebUI.Admin
 
             CreateTableRow("isAdmin", user.isAdmin);
 
-            CreateTableRow("Image", user.imgFile);
+           Picture picture = _pictureRepository.GetPicture(user.PictureId);
 
-            CreateTableRow("ImageType", user.ImageMimeType);
+            CreateTableRow("Image", picture.FileData);
+
+            CreateTableRow("ImageType", picture.ImageMimeType);
         }
 
 

@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace Blog.Repository
 {
-   public interface IArticleRepository
+    public interface IArticleRepository
     {
         List<Article> GetPublished();
         bool CheckUniqueTitle(string title);
-        void AddNewArticle(string title);
+        void AddNewArticle(string title, int authorId);
         Article GetArticleForId(int id);
         void SetArticleContent(int id, string content);
+        List<Article> GetUserArticles(int userId);
+        void ChangePublishingStatus(Article article);
     }
 }

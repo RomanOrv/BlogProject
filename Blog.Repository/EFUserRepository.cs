@@ -12,9 +12,12 @@ namespace Blog.Repository
     {
         private readonly string _connectionString;
 
+        private EFPictureRepository _pictureRepository;
+
         public EFUserRepository(string connectionString)
         {
             this._connectionString = connectionString;
+            _pictureRepository = new EFPictureRepository(this._connectionString);
         }
 
         public List<User> GetAllUsers()
@@ -39,7 +42,9 @@ namespace Blog.Repository
             byte[] data;
             using (ObjectContext context = new ObjectContext(_connectionString))
             {
-              data =  context.CreateObjectSet<User>().Single(x=>x.Id == id).imgFile;
+                User user = context.CreateObjectSet<User>().Single(x => x.Id == id);
+                Picture picture = _pictureRepository.GetPicture(user.PictureId);
+                data = picture.FileData;
             }
             return data;
         }
@@ -74,6 +79,8 @@ namespace Blog.Repository
                 var users = context.CreateObjectSet<User>();
                 int maxId = users.Any() ? users.Max(x => x.Id) : 1;
 
+                int pictureId = _pictureRepository.AddPicture(imagebyte, imgtype, string.Empty);
+
                 User newUser = new User()
                 {
                     Id = +maxId,
@@ -86,13 +93,29 @@ namespace Blog.Repository
                     Password = password,
                     isEnable = true,
                     isAdmin = false,
-                    imgFile = imagebyte,
-                    ImageMimeType = imgtype
+                    PictureId = pictureId
                 };
 
                 users.AddObject(newUser);
                 context.SaveChanges();
             };
+        }
+
+
+        public User GetUser(string login, string password)
+        {
+            using (ObjectContext context = new ObjectContext(this._connectionString))
+            {
+                return context.CreateObjectSet<User>().Single(r => r.Username == login && r.Password == password && r.isEnable == true);
+            }
+        }
+
+        public User GetUser(string login)
+        {
+            using (ObjectContext context = new ObjectContext(this._connectionString))
+            {
+                return context.CreateObjectSet<User>().Single(r => r.Username == login);
+            }
         }
     }
 }

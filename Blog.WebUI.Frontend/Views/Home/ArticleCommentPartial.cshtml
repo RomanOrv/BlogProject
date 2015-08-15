@@ -1,2 +1,19 @@
-﻿<h2>Comment</h2>
+﻿@model Blog.WebUI.Frontend.Models.CommentModel
+@{
+ int ArticleId = (int)ViewData["ArticleId"];
+    //Model.ArticleId = ArticleId;
+} 
 
+
+<div style="border: 1px solid black; margin-top: 10px; ">
+    <h3>Comment</h3>
+
+    @using (Html.BeginForm("ArticleCommentPartial", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <p>
+            Comment: @Html.TextBoxFor(m => m.Content)
+           @Html.Hidden("ArticleId", ArticleId)
+            <input type="submit" value="Send comment" />
+        </p>
+    }
+</div>

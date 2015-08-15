@@ -1,0 +1,57 @@
+﻿@using Blog.Entities
+
+
+
+@{
+    ViewBag.Title = "ShowOwnArticles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    List<Article> articles = ViewBag.UserArticles;
+}
+
+<h2>ShowOwnArticles</h2>
+
+<div>
+    @* <a href="#" title="New Blog"></a>*@
+
+    <div class="container">
+        <table class="listArticles">
+            <thead>
+            <tr>
+                <th>
+                    №
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Creation Time
+                </th>
+                <th>
+                    isPublished
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach (var article in articles)
+            {
+                <tr>
+                    <td>@article.Id</td>
+                    <td>@article.Title</td>
+                    <td>@article.CreationTime</td>
+                    <td>@Html.DisplayFor(a => article.Published)</td>
+                    <td>@Html.ActionLink("Show Article", "ShowArticle", "Home", new {title = article.Title, id = article.Id, authorId = article.AuthorId}, null)</td>
+                    <td> @Html.ActionLink("Change publStatus", "ChangePublish", "Home", new { articleId = article.Id }, null)</td>
+
+                </tr>
+            }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
