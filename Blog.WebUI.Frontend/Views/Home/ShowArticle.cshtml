@@ -13,46 +13,48 @@
     Comment[] listComment = ViewBag.ListComment;
 }
 
-<hr />
-<h2>Article : @Title</h2>
-<div>
-    Author :
-    <br />
-      <img id="imgProfile" src="@Url.Action("GetImage", "Account", new { authorId = AuthorId})" width="100" />
-    <span id="userPlace"></span>
+<div class="containerShow">
+    <span style="background-color: blueviolet; border: 1px solid black; border-radius: 5px; top: 10px; position: relative;">
+        @Html.ActionLink("Write Article", "WriteArticle", "Home", new { title = Title, id = ArticleId, authorId = AuthorId }, new {@style="color: white;"})
+    </span>
+    <hr/>
+    <h2>Article : @Title</h2>
+    <div>
+        Author :
+        <br/>
+        <img id="imgProfile" src="@Url.Action("GetImage", "Account", new {authorId = AuthorId})" width="100"/>
+        <span id="userPlace"></span>
+    </div>
+    <hr/>
+    <div id="divText" data-article-id="@ArticleId" data-author-id="@AuthorId"></div>
+    <hr/>
+    <div>
+        @{
+            Html.ViewData.Add(new KeyValuePair<string, object>("ArticleId", ArticleId));
+            Html.RenderPartial("ArticleCommentPartial", Html.ViewData);
+
+            //Html.RenderPartial("_CreateEditDisplay", Model, Html.ViewData);
+        }
+        @*@Html.Partial("ArticleCommentPartial", ArticleId);*@
+        @*@Html.Action("ArticleCommentPartial", ArticleId);*@
+
+    </div>
+    <hr/>
+
+    @*@using (Html.BeginForm())
+        {
+
+        }*@
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+
+    <div style="margin-top: 10px">
+        @Html.Action("CommentListPartial", new {commetaries = listComment})
+    </div>
+
+
+    <script src="~/Scripts/pages/showArticle.js"></script>
 </div>
-<hr />
-<div id="divText" data-article-id="@ArticleId" data-author-id="@AuthorId"></div>
-<hr />
-
-@Html.ActionLink("Write Article", "WriteArticle", "Home", new { title = Title, id = ArticleId, authorId = AuthorId }, null)
-<hr />
-<div>
-    @{
-    Html.ViewData.Add(new KeyValuePair<string, object>("ArticleId",ArticleId));
-    Html.RenderPartial("ArticleCommentPartial", Html.ViewData);
-
-    //Html.RenderPartial("_CreateEditDisplay", Model, Html.ViewData);
-    }
-    @*@Html.Partial("ArticleCommentPartial", ArticleId);*@
-    @*@Html.Action("ArticleCommentPartial", ArticleId);*@
-
-</div>
-<hr />
-
-@*@using (Html.BeginForm()) 
-{
-
-}*@
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-
-<div style="margin-top:10px">
-    @Html.Action("CommentListPartial", new { commetaries = listComment })
-</div>
-
-
-<script src="~/Scripts/pages/showArticle.js"></script>

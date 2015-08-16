@@ -145,7 +145,7 @@ namespace Blog.WebUI.Frontend.Controllers
             }
             else
             {
-                data = System.IO.File.ReadAllBytes(Server.MapPath("~/Images/" + DEF_IMG_FILE));
+                data = System.IO.File.ReadAllBytes(Server.MapPath("~/Styles/Images/" + DEF_IMG_FILE));
             }
             return data;
         }

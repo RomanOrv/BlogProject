@@ -7,7 +7,7 @@
         @Html.AntiForgeryToken()
         <table>
             <tr>
-                <td>@Html.Label("Hello " + User.Identity.Name + "!")</td>
+                <td>@Html.Label("Hello " + User.Identity.Name + "!", new{id="lblLogin"})</td>
                 <td rowspan="2"> <img src="@Url.Action("GetImageProf", "Account", new { username = User.Identity.Name })" alt="sign image" /></td>
             </tr>
             <tr>

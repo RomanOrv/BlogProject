@@ -22,42 +22,36 @@
    
         <div id="header">
             <div id="logo">
-                <img src="~/StyleImages/blogImage.jpg" height="150" alt="email image">
+                <img src="~/Styles/Images/blogpost.jpg" height="150" alt="email image">
             </div>
             <div id="titlesPlace">
                 <div id="mainTitle">
                     <h1>My Blog</h1>
                     <div id="userLogin">
                         @Html.Partial("_LoginPartial")
-                        @*<img src="~/StyleImages/User-Default.jpg" alt="sign image" />
-                        <ul class="sub-menu">
-                            <li>@Html.ActionLink("Registration", "Registration", "Account")</li>
-                            <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                            <li>
-                                @Html.ActionLink("Log out", "Registration", "Account")
-                            </li>
-                        </ul>*@
                     </div>
                 </div>
                 <div id="pageTitle">
-                    <h2>Page Title </h2>
+                    <ul class="menu">
+                        <li>
+                            @Html.ActionLink("List Articles", "Index", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("New Article", "NewArticle", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Own Articles", "ShowOwnArticles", "Home")
+                        </li>
+                        <li>
+                            <div style="width: 200px; display: inline;">
+                                @Html.Partial("_SearchArticlePartial")
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
         <div id="main">
-            <div id="menuPlace">
-                <ul class="menu">
-                    <li>
-                        @Html.ActionLink("List Articles", "Index", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("New Article", "NewArticle", "Home")
-                    </li>
-                    <li>
-                        @Html.ActionLink("Own Articles", "ShowOwnArticles", "Home")
-                    </li>
-                </ul>
-            </div>
             <div id="content">
                 @RenderBody()
             </div>

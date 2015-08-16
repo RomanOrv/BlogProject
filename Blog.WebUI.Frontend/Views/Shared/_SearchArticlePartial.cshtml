@@ -1,0 +1,7 @@
+﻿@using (Html.BeginForm("Index", "Home", FormMethod.Get, new { id = "searchForm" }))
+{
+    <span>
+        Title: @Html.TextBox("searchTitle")
+        <input type="submit" value="Filter" id="btnFilter" />
+    </span>
+}

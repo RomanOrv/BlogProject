@@ -48,49 +48,49 @@
 
 <h2>Index</h2>
 <h3>Blogs Table</h3>
-<div>
+
     @* <a href="#" title="New Blog"></a>*@
     <div class="container">
 
-        @Html.Partial("_SearchArticlePartial")
+        <div style="margin: 0 auto; width: auto;">
 
 
-        @*@{
-            
-           var obj = new WebGrid(articles);
-        }
-        @obj.GetHtml();*@
+            @*@{
 
-     
+               var obj = new WebGrid(articles);
+            }
+            @obj.GetHtml();*@
 
 
-        <table class="listArticles">
-            <thead>
-                <tr>
-                    <th>
-                        №
-                    </th>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        AuthorId
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
 
-                @foreach (var article in articles)
-                {
+
+            <table class="listArticles">
+                <thead>
                     <tr>
-                        <td>@article.Id</td>
-                        <td>@article.Title</td>
-                        <td>@article.AuthorId</td>
-                        <td>@Html.ActionLink("Show Article", "ShowArticle", "Home", new { title = article.Title, id = article.Id, authorId = article.AuthorId }, null)</td>
+                        <th>
+                            №
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            AuthorId
+                        </th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+
+                    @foreach (var article in articles)
+                    {
+                        <tr>
+                            <td>@article.Id</td>
+                            <td>@article.Title</td>
+                            <td>@article.AuthorId</td>
+                            <td>@Html.ActionLink("Show Article", "ShowArticle", "Home", new { title = article.Title, id = article.Id, authorId = article.AuthorId }, null)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 </div>
