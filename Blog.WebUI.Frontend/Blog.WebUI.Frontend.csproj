@@ -97,8 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Images\glyphicons-halflings.png" />
-    <Content Include="Images\User-Default.jpg" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\libs\jquery\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\libs\bootstrap\bootstrap.js" />
@@ -117,7 +115,7 @@
     <Content Include="Scripts\libs\others\modernizr-2.8.3.js" />
     <Content Include="Scripts\libs\wysihtml5\wysihtml5-0.3.0_rc2.js" />
     <Content Include="Scripts\pages\showArticle.js" />
-    <Content Include="Scripts\pages\writeArticle.js" />
+    <Content Include="Styles\writeArticle.js" />
     <Content Include="Styles\bootstrap-wysihtml5.css" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\Images\blogpost.jpg" />

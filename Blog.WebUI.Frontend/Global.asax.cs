@@ -9,8 +9,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using NLog;
-//using Logger = dotless.Core.Loggers.Logger;
-//using LogLevel = dotless.Core.Loggers.LogLevel;
+
 
 namespace Blog.WebUI.Frontend
 {

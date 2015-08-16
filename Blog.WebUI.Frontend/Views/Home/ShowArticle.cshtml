@@ -33,18 +33,12 @@
             Html.ViewData.Add(new KeyValuePair<string, object>("ArticleId", ArticleId));
             Html.RenderPartial("ArticleCommentPartial", Html.ViewData);
 
-            //Html.RenderPartial("_CreateEditDisplay", Model, Html.ViewData);
         }
-        @*@Html.Partial("ArticleCommentPartial", ArticleId);*@
-        @*@Html.Action("ArticleCommentPartial", ArticleId);*@
+
 
     </div>
     <hr/>
 
-    @*@using (Html.BeginForm())
-        {
-
-        }*@
 
     <div>
         @Html.ActionLink("Back to List", "Index")

@@ -40,5 +40,7 @@ namespace Blog.WebUI.Admin
         {
             Response.Redirect("~/Default.aspx");
         }
+
+
     }
 }

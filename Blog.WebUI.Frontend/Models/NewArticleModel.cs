@@ -9,7 +9,7 @@ namespace Blog.WebUI.Frontend.Models
     public class NewArticleModel
     {
         [DataType(DataType.Text)]
-        [System.Web.Mvc.Remote("ValidateBlogTitle", "Validation", ErrorMessage = "Blog name already in use")]
+        [System.Web.Mvc.Remote("ValidateBlogTitle", "Validation", ErrorMessage = "Blog name is already exists")]
         [Required()]
         public string Title { get; set; }
     }

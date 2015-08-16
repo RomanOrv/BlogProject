@@ -124,10 +124,6 @@ namespace Blog.WebUI.Frontend.Controllers
                                     .GetArticleForId(id)
                                     .Content;
 
-            //string imgSrc = SearchImageSrc(formattedText);
-
-            //formattedText =  formattedText.Replace(imgSrc, "/Home/GetImage?url=" + imgSrc);
-
             string encodedText = Server.UrlEncode(formattedText);
             return Json(new
             {
@@ -174,7 +170,6 @@ namespace Blog.WebUI.Frontend.Controllers
 
         private byte[] DownloadData(string url)
         {
-
             //Get a data stream from the url
             WebRequest req = WebRequest.Create(url);
             WebResponse response = req.GetResponse();
@@ -202,7 +197,6 @@ namespace Blog.WebUI.Frontend.Controllers
                     memStream.Write(buffer, 0, bytesRead);
                 }
             }
-
             return memStream.ToArray();
         }
 

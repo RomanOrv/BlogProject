@@ -31,7 +31,7 @@ namespace Blog.WebUI.Frontend.Models
 
         [DataType(DataType.Text)]
         [StringLength(30, MinimumLength = 3)]
-        [System.Web.Mvc.Remote("ValidateUsername", "Validation", ErrorMessage = "Username already in use")]
+        [System.Web.Mvc.Remote("ValidateUsername", "Validation", ErrorMessage = "Username is already exists")]
         [Required()]
         public string Username { get; set; }
 

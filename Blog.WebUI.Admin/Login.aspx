@@ -8,5 +8,6 @@
         TextBoxStyle-Font-Bold="false" LabelStyle-Font-Bold="true" CheckBoxStyle-Font-Bold="false" BackColor="Bisque"
          OnAuthenticate="lgAuth_OnAuthenticate" OnLoggingIn="lgAuth_OnLoggingIn">
         <ValidatorTextStyle ForeColor="Red" />
+
     </asp:Login>
 </asp:Content>

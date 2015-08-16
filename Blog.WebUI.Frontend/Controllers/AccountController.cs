@@ -20,7 +20,10 @@ namespace Blog.WebUI.Frontend.Controllers
         readonly IPictureRepository _pictureRepository;
         readonly private ISecurityManager _sequrityManager;
         private const string DEF_IMG_FILE = "User-Default.jpg";
-        public AccountController(IUserRepository userRepository, IPictureRepository pictureRepository, ISecurityManager sequrityManager)
+
+        public AccountController(IUserRepository userRepository,
+                                IPictureRepository pictureRepository,
+                                ISecurityManager sequrityManager)
         {
             this._userRepository = userRepository;
             this._pictureRepository = pictureRepository;
@@ -57,7 +60,6 @@ namespace Blog.WebUI.Frontend.Controllers
             {
                 return View();
             }
-           //
         }
 
 
