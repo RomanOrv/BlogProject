@@ -33,7 +33,7 @@
                     </asp:RoleGroup>
                     <asp:RoleGroup Roles="user">
                         <ContentTemplate>
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul >
                                 <li>Hello, <%: Context.User.Identity.Name  %> is not administrator !</li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="OnLoggingOut" />
