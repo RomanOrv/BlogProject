@@ -15,7 +15,7 @@
 
 <div class="containerShow">
     <span style="background-color: blueviolet; border: 1px solid black; border-radius: 5px; top: 10px; position: relative;">
-        @Html.ActionLink("Write Article", "WriteArticle", "Home", new { title = Title, id = ArticleId, authorId = AuthorId }, new {@style="color: white;"})
+        @Html.ActionLink("Edit Article", "WriteArticle", "Home", new { title = Title, id = ArticleId, authorId = AuthorId }, new {@style="color: white;"})
     </span>
     <hr/>
     <h2>Article : @Title</h2>
@@ -39,10 +39,6 @@
     </div>
     <hr/>
 
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
 
 
     <div style="margin-top: 10px">
