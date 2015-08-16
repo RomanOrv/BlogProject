@@ -1,11 +1,22 @@
---CREATE DATABASE Blog
---GO
-
---USE Blog
---GO
-
-USE todolist
+CREATE DATABASE Blog
 GO
+
+
+USE Blog
+GO
+
+
+CREATE TABLE [Picture](
+Id INT IDENTITY(1,1) PRIMARY KEY, 
+FileData VARBINARY(MAX) not null,
+ImageMimeType VARCHAR(50),
+Src NVARCHAR(MAX)
+);
+
+alter table Picture
+alter column Src NVARCHAR(MAX)
+
+
 
 CREATE TABLE [User](
 Id INT IDENTITY(1,1) PRIMARY KEY, 
@@ -18,16 +29,46 @@ DateDisable DATE,
 Username NVARCHAR(50) NOT NULL,
 [Password] NVARCHAR(50) NOT NULL,
 isAdmin BIT NOT NULL,
-isEnable BIT NOT NULL
+isEnable BIT NOT NULL,
+PictureId INT NOT NULL REFERENCES [Picture](Id) ON DELETE CASCADE,
 );
 
+
+--alter table [User] drop column imgFileName
+
+
+
+
 --DROP TABLE [User]
+--DROP TABLE [Article]
 
 
 
-INSERT INTO [User] VALUES
-('Орловський', 'Роман', 'orv1979@gmail.com', '2015-05-10', null, '', 'admin', '123', 1, 1 ),
-('Сифорова', 'Тетяна', 'siphtat@gmail.com', '2015-06-18', null, '', 'tannyaSif', '123', 0, 1 ),
-('Сокуренко', 'Людмила', 'ludmyla@gmail.com', '2015-05-17', null, '', 'ludochka', '123', 0, 1 ),
-('Яковенко', 'Юрій', 'yakovenko@gmail.com', '2015-06-12', null, '', 'yuriyYak', '123', 0, 1 ),
-('Волинець', 'Василь', 'volynets@gmail.com', '2015-06-15', null, '', 'vasyaVol', '123', 0, 1 )
+CREATE TABLE Article
+(
+	Id INT NOT NULL IDENTITY (1,1) PRIMARY KEY, 
+	AuthorId INT NOT NULL REFERENCES [User](Id) ON DELETE CASCADE,
+	Title NVARCHAR(255) NOT NULL,
+	CreationTime DATETIME NOT NULL,
+	Content NVARCHAR(MAX) NULL,
+	Published BIT NOT NULL
+ );
+
+
+
+ CREATE TABLE Comment
+ (
+	 Id INT NOT NULL IDENTITY (1,1) PRIMARY KEY, 
+	 AuthorId INT NOT NULL REFERENCES [User](Id),
+	 ArticleId INT NOT NULL REFERENCES [Article](Id),
+	 Content NVARCHAR(MAX) NULL,
+	 CommDate DATETIME NOT NULL
+ );
+
+
+
+
+--Truncate table [User]
+--Truncate table Article
+
+
