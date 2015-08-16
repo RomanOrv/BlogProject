@@ -17,9 +17,7 @@ namespace Blog.WebUI.Frontend
             container.RegisterType<IUserRepository, EFUserRepository>(new InjectionConstructor(connectionString));
             container.RegisterType<IPictureRepository, EFPictureRepository>(new InjectionConstructor(connectionString));
             container.RegisterType<ICommentRepository, EFCommentRepository>(new InjectionConstructor(connectionString));
-            container.RegisterType<ISecurityManager, FormsSecurityManager>(
-                new InjectionConstructor(new EFUserRepository(connectionString))
-                );
+            container.RegisterType<ISecurityManager, FormsSecurityManager>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

@@ -21,51 +21,51 @@ namespace Blog.WebUI.Frontend.Filters
 
         public AllowAuthorAttribute()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["BlogEntities"].ConnectionString;
-            _userRepository = new EFUserRepository(connectionString);
-            _articleRepository = new EFArticleRepository(connectionString);
             isAccess = false;
+
+            _userRepository = DependencyResolver.Current.GetService<IUserRepository>();
+            _articleRepository = DependencyResolver.Current.GetService<IArticleRepository>();
         }
 
-            protected override bool AuthorizeCore(HttpContextBase httpContext)
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+            var authorized = base.AuthorizeCore(httpContext);
+            if (!authorized)
             {
-                var authorized = base.AuthorizeCore(httpContext);
-                if (!authorized)
-                {
-                    return false;
-                }
-
-                var rd = httpContext.Request.RequestContext.RouteData;
-
-                var id = rd.Values["id"];
-                var userName = httpContext.User.Identity.Name;
-
-                Article article = _articleRepository.GetArticleForId(Convert.ToInt32(id));
-                User user = _userRepository.GetUser(userName);
-                isAccess = article.AuthorId == user.Id;
-
-                return article.AuthorId == user.Id;
+                return false;
             }
 
+            var rd = httpContext.Request.RequestContext.RouteData;
+
+            var id = rd.Values["id"];
+            var userName = httpContext.User.Identity.Name;
+
+            Article article = _articleRepository.GetArticleForId(Convert.ToInt32(id));
+            User user = _userRepository.GetUser(userName);
+            isAccess = article.AuthorId == user.Id;
+
+            return isAccess;
+        }
 
 
 
-            protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            //User isn't logged in
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                //User isn't logged in
-                if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
-                {
-                    filterContext.Result = new RedirectToRouteResult(
-                            new RouteValueDictionary(new { controller = "Account", action = "Login" })
-                    );
-                }
-                //User is logged in but has no access
-                else
-                {
-                    filterContext.Result = new RedirectToRouteResult(
-                            new RouteValueDictionary(new { controller = "Home", action = "Index" })
-                    );
-                }
+                filterContext.Result = new RedirectToRouteResult(
+                        new RouteValueDictionary(new { controller = "Account", action = "Login" })
+                );
+            }
+            //User is logged in but has no access
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                        new RouteValueDictionary(new { controller = "Home", action = "Index" })
+                );
             }
         }
     }
+}
